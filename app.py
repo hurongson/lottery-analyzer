@@ -19,6 +19,8 @@ from src.analysis.statistics import LotteryStatistics
 from src.backtest.engine import BacktestEngine
 from src.backtest.strategies import get_all_strategies, get_strategy_by_name
 from src.collector.ssq_collector import collect_ssq_data
+from src.collector.dlt_collector import collect_dlt_data
+from src.collector.digital_collector import collect_digital_data
 from config import DISCLAIMER, LOTTERY_RULES
 
 st.set_page_config(
@@ -30,19 +32,23 @@ st.set_page_config(
 
 # 初始化数据管理器（自动适配本地 SQLite / 云端 CSV）
 @st.cache_resource
-def get_data_manager():
-    return DataManager("ssq")
-
-dm = get_data_manager()
-db = dm._db if dm._mode == "sqlite" else None
+def get_data_manager(lottery_type):
+    return DataManager(lottery_type)
 
 # 侧边栏
 with st.sidebar:
     st.title("🎰 彩票分析软件")
     st.markdown("---")
 
-    lottery_type = st.selectbox("选择彩种", ["双色球 (SSQ)"], index=0)
-    lt = "ssq"
+    lottery_options = {
+        "双色球 (SSQ)": "ssq",
+        "大乐透 (DLT)": "dlt",
+        "福彩3D": "fc3d",
+        "排列三": "pl3",
+        "排列五": "pl5",
+    }
+    lottery_label = st.selectbox("选择彩种", list(lottery_options.keys()), index=0)
+    lt = lottery_options[lottery_label]
 
     st.markdown("---")
     page = st.radio(
@@ -53,6 +59,10 @@ with st.sidebar:
 
     st.markdown("---")
     st.caption(DISCLAIMER)
+
+# 根据选择的彩种创建数据管理器
+dm = get_data_manager(lt)
+db = dm._db if dm._mode == "sqlite" else None
 
 # 加载数据（缓存）
 @st.cache_data(ttl=300)
@@ -513,16 +523,30 @@ elif page == "⚙️ 数据管理":
             with col_a:
                 if st.button("🔄 增量更新", type="primary"):
                     with st.spinner("正在采集最新数据..."):
-                        result = collect_ssq_data(db, full_refresh=False)
-                        st.success(f"采集完成：新增 {result.get('collected', 0)} 条，总计 {result.get('total', 0)} 条")
+                        if lt == "ssq":
+                            result = collect_ssq_data(db, full_refresh=False)
+                            st.success(f"采集完成：新增 {result.get('collected', 0)} 条，总计 {result.get('total', 0)} 条")
+                        elif lt == "dlt":
+                            result = collect_dlt_data(db, full_refresh=False)
+                            st.success(f"采集完成：新增 {result.get('collected', 0)} 条，总计 {result.get('total', 0)} 条")
+                        else:
+                            count = collect_digital_data(lt, db=db, full_refresh=False)
+                            st.success(f"采集完成：更新 {count} 条")
                         dm.export_to_csv()
                         st.cache_data.clear()
                         st.rerun()
             with col_b:
                 if st.button("🔄 全量重新采集"):
                     with st.spinner("正在全量采集..."):
-                        result = collect_ssq_data(db, full_refresh=True)
-                        st.success(f"全量采集完成：共 {result.get('total', 0)} 条")
+                        if lt == "ssq":
+                            result = collect_ssq_data(db, full_refresh=True)
+                            st.success(f"全量采集完成：共 {result.get('total', 0)} 条")
+                        elif lt == "dlt":
+                            result = collect_dlt_data(db, full_refresh=True)
+                            st.success(f"全量采集完成：共 {result.get('total', 0)} 条")
+                        else:
+                            count = collect_digital_data(lt, db=db, full_refresh=True)
+                            st.success(f"全量采集完成：共 {count} 条")
                         dm.export_to_csv()
                         st.cache_data.clear()
                         st.rerun()
@@ -540,11 +564,12 @@ elif page == "⚙️ 数据管理":
 
     st.markdown("---")
     st.subheader("📦 数据信息")
+    lottery_name = LOTTERY_RULES.get(lt, {}).get("name", lt)
     if is_cloud:
         st.code(f"""
 数据模式: 云端 CSV（GitHub 仓库托管）
 数据文件: data/{lt}_draws.csv
-彩种: 双色球 (SSQ)
+彩种: {lottery_name}
 数据量: {len(df)} 条
 更新方式: GitHub Actions 每日自动更新
         """)
@@ -552,7 +577,7 @@ elif page == "⚙️ 数据管理":
         st.code(f"""
 数据模式: 本地 SQLite
 数据库路径: {db.db_path}
-彩种: 双色球 (SSQ)
+彩种: {lottery_name}
 数据量: {len(df)} 条
 表结构:
   - draws: 历史开奖数据
