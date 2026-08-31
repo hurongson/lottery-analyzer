@@ -18,6 +18,8 @@ on:
 jobs:
   analyze-and-push:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - name: 检出代码
         uses: actions/checkout@v4
@@ -48,6 +50,10 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add data/ data/reports/
-          git diff --staged --quiet || git commit -m "AI分析报告 $(date +'%Y-%m-%d %H:%M')"
-          git push
+          git add data/ data/reports/ 2>/dev/null || true
+          if git diff --staged --quiet; then
+            echo "没有变更，跳过提交"
+          else
+            git commit -m "AI分析报告 $(date +'%Y-%m-%d %H:%M')"
+            git push origin main
+          fi
