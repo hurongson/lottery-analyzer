@@ -1,0 +1,111 @@
+[
+  {
+    "lottery_type": "fc3d",
+    "target_issue": "2026233",
+    "strategy_name": "AI推荐",
+    "strategy_params": null,
+    "candidate_tickets": [
+      {
+        "red_balls": [
+          7,
+          0,
+          4
+        ],
+        "blue_balls": [],
+        "score": 1.0,
+        "ai_reason": "（未配置AI，按统计评分排序）"
+      },
+      {
+        "red_balls": [
+          2,
+          8,
+          7
+        ],
+        "blue_balls": [],
+        "score": 1.0,
+        "ai_reason": "（未配置AI，按统计评分排序）"
+      },
+      {
+        "red_balls": [
+          9,
+          0,
+          6
+        ],
+        "blue_balls": [],
+        "score": 1.0,
+        "ai_reason": "（未配置AI，按统计评分排序）"
+      },
+      {
+        "red_balls": [
+          7,
+          2,
+          7
+        ],
+        "blue_balls": [],
+        "score": 1.0,
+        "ai_reason": "（未配置AI，按统计评分排序）"
+      },
+      {
+        "red_balls": [
+          8,
+          0,
+          8
+        ],
+        "blue_balls": [],
+        "score": 1.0,
+        "ai_reason": "（未配置AI，按统计评分排序）"
+      },
+      {
+        "red_balls": [
+          8,
+          4,
+          1
+        ],
+        "blue_balls": [],
+        "score": 1.0,
+        "ai_reason": "（未配置AI，按统计评分排序）"
+      },
+      {
+        "red_balls": [
+          9,
+          4,
+          1
+        ],
+        "blue_balls": [],
+        "score": 1.0,
+        "ai_reason": "（未配置AI，按统计评分排序）"
+      },
+      {
+        "red_balls": [
+          1,
+          8,
+          7
+        ],
+        "blue_balls": [],
+        "score": 1.0,
+        "ai_reason": "（未配置AI，按统计评分排序）"
+      },
+      {
+        "red_balls": [
+          7,
+          8,
+          0
+        ],
+        "blue_balls": [],
+        "score": 1.0,
+        "ai_reason": "（未配置AI，按统计评分排序）"
+      },
+      {
+        "red_balls": [
+          4,
+          1,
+          9
+        ],
+        "blue_balls": [],
+        "score": 0.9,
+        "ai_reason": "（未配置AI，按统计评分排序）"
+      }
+    ],
+    "created_at": "2026-08-31 16:22:58"
+  }
+]

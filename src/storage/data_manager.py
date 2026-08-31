@@ -235,8 +235,8 @@ class DataManager:
             draws.append({
                 "issue_number": str(row["issue_number"]),
                 "draw_date": str(row["draw_date"]),
-                "red_balls": [int(n) for n in str(row["red_balls"]).split(",")],
-                "blue_balls": [int(n) for n in str(row["blue_balls"]).split(",")],
+                "red_balls": [int(n) for n in str(row["red_balls"]).split(",") if n.strip() and n.strip() != "nan"],
+                "blue_balls": [int(n) for n in str(row["blue_balls"]).split(",") if n.strip() and n.strip() != "nan"],
             })
 
         return self._db.insert_draws(self.lottery_type, draws)

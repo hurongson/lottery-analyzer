@@ -58,9 +58,15 @@ def run_analysis(lottery_type: str, skip_update: bool = False, no_push: bool = F
         db = Database()
         if lottery_type == "ssq":
             result = collect_ssq_data(db, full_refresh=False)
-        else:
+            print(f"  数据更新完成：{result.get('status')}，新增 {result.get('collected', 0)} 条，总计 {result.get('total', 0)} 条")
+        elif lottery_type == "dlt":
             result = collect_dlt_data(db, full_refresh=False)
-        print(f"  数据更新完成：{result.get('status')}，新增 {result.get('collected', 0)} 条，总计 {result.get('total', 0)} 条")
+            print(f"  数据更新完成：{result.get('status')}，新增 {result.get('collected', 0)} 条，总计 {result.get('total', 0)} 条")
+        else:
+            # 数字型彩票（fc3d/pl3/pl5）
+            from src.collector.digital_collector import collect_digital_data
+            count = collect_digital_data(lottery_type, db=db, full_refresh=False)
+            print(f"  数据更新完成：新增/更新 {count} 条")
 
         # 同步到 CSV
         dm = DataManager(lottery_type)
@@ -187,7 +193,7 @@ def run_analysis(lottery_type: str, skip_update: bool = False, no_push: bool = F
 def main():
     parser = argparse.ArgumentParser(description="彩票 AI 分析与推送")
     parser.add_argument("--lottery", type=str, default="all",
-                       choices=["ssq", "dlt", "all"],
+                       choices=["ssq", "dlt", "fc3d", "pl3", "pl5", "all"],
                        help="彩种类型（默认 all：自动判断今日开奖彩种）")
     parser.add_argument("--skip-update", action="store_true",
                        help="跳过数据更新")
@@ -200,8 +206,34 @@ def main():
         if not today_lotteries:
             print("今天没有彩票开奖，退出。")
             return
-        print(f"今日开奖彩种：{', '.join(today_lotteries)}")
+        # 按当前时间过滤：只运行开奖时间在未来1-2小时内的彩种
+        from datetime import datetime, timedelta
+        import os
+        # GitHub Actions 用 UTC，转北京时间
+        now_utc = datetime.utcnow()
+        now_bj = now_utc + timedelta(hours=8)
+        current_hour = now_bj.hour
+        current_minute = now_bj.minute
+        current_time_min = current_hour * 60 + current_minute
+
+        filtered = []
         for lt in today_lotteries:
+            cfg = COLLECTOR_CONFIG.get(lt, {})
+            draw_time = cfg.get("draw_time", "21:00")
+            dh, dm = map(int, draw_time.split(":"))
+            draw_time_min = dh * 60 + dm
+            # 只运行开奖时间在当前时间之后60-120分钟内的彩种
+            diff = draw_time_min - current_time_min
+            if 30 <= diff <= 150:
+                filtered.append(lt)
+
+        if not filtered:
+            print(f"当前时间 {now_bj.strftime('%H:%M')}（北京时间）没有即将开奖的彩种，退出。")
+            print(f"今日开奖彩种：{', '.join(today_lotteries)}")
+            return
+
+        print(f"当前时间 {now_bj.strftime('%H:%M')}（北京时间），即将开奖：{', '.join(filtered)}")
+        for lt in filtered:
             run_analysis(lt, skip_update=args.skip_update, no_push=args.no_push)
     else:
         run_analysis(args.lottery, skip_update=args.skip_update, no_push=args.no_push)

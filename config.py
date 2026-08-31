@@ -42,6 +42,26 @@ COLLECTOR_CONFIG = {
         "draw_time": "20:30",  # 开奖时间（北京时间）
         "draw_days": [0, 2, 5],  # 开奖日：周一、周三、周六 (0=周一)
     },
+    "fc3d": {
+        "name": "福彩3D",
+        "draw_time": "21:15",
+        "draw_days": [0, 1, 2, 3, 4, 5, 6],  # 每天开奖
+    },
+    "pl3": {
+        "name": "排列三",
+        "draw_time": "20:30",
+        "draw_days": [0, 1, 2, 3, 4, 5, 6],  # 每天开奖
+    },
+    "pl5": {
+        "name": "排列五",
+        "draw_time": "20:30",
+        "draw_days": [0, 1, 2, 3, 4, 5, 6],  # 每天开奖
+    },
+    "qxc": {
+        "name": "七星彩",
+        "draw_time": "20:30",
+        "draw_days": [1, 4, 6],  # 周二、周五、周日
+    },
 }
 
 # 彩种规则配置
@@ -112,6 +132,79 @@ LOTTERY_RULES = {
             8: 15,
             9: 5,
         },
+        "ticket_price": 2,
+    },
+    "fc3d": {
+        "name": "福彩3D",
+        "red_count": 3,
+        "red_min": 0,
+        "red_max": 9,
+        "blue_count": 0,
+        "blue_min": 0,
+        "blue_max": 0,
+        "draw_days": [0, 1, 2, 3, 4, 5, 6],
+        "is_digital": True,
+        "prize_tiers": {
+            1: {"desc": "直选", "match_type": "exact"},
+            2: {"desc": "组三", "match_type": "group3"},
+            3: {"desc": "组六", "match_type": "group6"},
+        },
+        "prize_amounts": {1: 1040, 2: 346, 3: 173},
+        "ticket_price": 2,
+    },
+    "pl3": {
+        "name": "排列三",
+        "red_count": 3,
+        "red_min": 0,
+        "red_max": 9,
+        "blue_count": 0,
+        "blue_min": 0,
+        "blue_max": 0,
+        "draw_days": [0, 1, 2, 3, 4, 5, 6],
+        "is_digital": True,
+        "prize_tiers": {
+            1: {"desc": "直选", "match_type": "exact"},
+            2: {"desc": "组三", "match_type": "group3"},
+            3: {"desc": "组六", "match_type": "group6"},
+        },
+        "prize_amounts": {1: 1040, 2: 346, 3: 173},
+        "ticket_price": 2,
+    },
+    "pl5": {
+        "name": "排列五",
+        "red_count": 5,
+        "red_min": 0,
+        "red_max": 9,
+        "blue_count": 0,
+        "blue_min": 0,
+        "blue_max": 0,
+        "draw_days": [0, 1, 2, 3, 4, 5, 6],
+        "is_digital": True,
+        "prize_tiers": {
+            1: {"desc": "一等奖", "match_type": "exact"},
+        },
+        "prize_amounts": {1: 100000},
+        "ticket_price": 2,
+    },
+    "qxc": {
+        "name": "七星彩",
+        "red_count": 6,
+        "red_min": 0,
+        "red_max": 9,
+        "blue_count": 1,
+        "blue_min": 0,
+        "blue_max": 9,
+        "draw_days": [1, 4, 6],
+        "is_digital": True,
+        "prize_tiers": {
+            1: {"desc": "一等奖", "pos_match": 7},
+            2: {"desc": "二等奖", "pos_match": 6},
+            3: {"desc": "三等奖", "pos_match": 5},
+            4: {"desc": "四等奖", "pos_match": 4},
+            5: {"desc": "五等奖", "pos_match": 3},
+            6: {"desc": "六等奖", "pos_match": 2},
+        },
+        "prize_amounts": {1: 5000000, 2: 50000, 3: 3000, 4: 500, 5: 30, 6: 5},
         "ticket_price": 2,
     },
 }

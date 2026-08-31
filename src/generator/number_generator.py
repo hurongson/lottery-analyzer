@@ -21,6 +21,8 @@ class NumberGenerator:
         self.stats = LotteryStatistics(lottery_type)
         self.ai = ai_service or AIService()
         self.rng = random.Random(seed) if seed is not None else random.Random()
+        from config import LOTTERY_RULES
+        self.is_digital = LOTTERY_RULES.get(lottery_type, {}).get("is_digital", False)
 
     def generate(self, history_df: pd.DataFrame, count: int = 10,
                  candidate_pool_size: int = 50) -> Tuple[List[Dict], Dict, str]:
@@ -39,8 +41,11 @@ class NumberGenerator:
         analysis = self.stats.analyze(history_df)
         stats_summary = self._build_stats_summary(analysis)
 
-        # 2. 生成候选池
-        candidates = self._generate_candidates(history_df, analysis, candidate_pool_size)
+        # 2. 生成候选池（数字型彩票用专门逻辑）
+        if self.is_digital:
+            candidates = self._generate_digital_candidates(history_df, analysis, candidate_pool_size)
+        else:
+            candidates = self._generate_candidates(history_df, analysis, candidate_pool_size)
 
         # 3. AI 筛选
         selected = self.ai.select_lottery_numbers(
@@ -53,6 +58,123 @@ class NumberGenerator:
         )
 
         return selected, stats_summary, analysis_text
+
+    def _generate_digital_candidates(self, history_df: pd.DataFrame, analysis: Dict,
+                                       pool_size: int = 50) -> List[Dict]:
+        """数字型彩票候选池生成（允许重复，有位置概念）"""
+        candidates = []
+        seen = set()
+
+        freq = analysis.get("frequency", {})
+        omission = analysis.get("omission", {})
+        sum_stats = analysis.get("sum_value", {})
+
+        red_hot = freq.get("red_hot10", [])
+        red_cold = freq.get("red_cold10", [])
+        red_gap = omission.get("red_current_gap", {})
+
+        red_min, red_max = self.lottery.red_range
+        blue_min, blue_max = self.lottery.blue_range
+        red_count = self.lottery.red_count
+        blue_count = self.lottery.blue_count
+
+        sum_mean = sum_stats.get("mean", 10)
+        sum_std = sum_stats.get("std", 5)
+
+        def weighted_pick(numbers, weights=None):
+            """按权重随机选一个数字"""
+            if not numbers:
+                return self.rng.randint(red_min, red_max)
+            if weights is None:
+                return self.rng.choice(numbers)
+            total = sum(weights)
+            if total == 0:
+                return self.rng.choice(numbers)
+            r = self.rng.uniform(0, total)
+            cumsum = 0
+            for n, w in zip(numbers, weights):
+                cumsum += w
+                if r <= cumsum:
+                    return n
+            return numbers[-1]
+
+        def add_candidate(reds, blues, strategy_name, score, features=""):
+            key = (tuple(reds), tuple(blues))  # 数字型不排序，顺序有意义
+            if key not in seen and self.lottery.is_valid_ticket(reds, blues):
+                seen.add(key)
+                candidates.append({
+                    "red_balls": reds,  # 不排序
+                    "blue_balls": blues,
+                    "score": score,
+                    "strategy": strategy_name,
+                    "features": features,
+                })
+                return True
+            return False
+
+        all_nums = list(range(red_min, red_max + 1))
+
+        # 策略1：热号为主（30%）
+        n_hot = int(pool_size * 0.3)
+        hot_weights = {n: 10 - i for i, n in enumerate(red_hot[:10])}
+        for _ in range(n_hot * 5):
+            if len([c for c in candidates if c["strategy"] == "hot"]) >= n_hot:
+                break
+            reds = [weighted_pick(all_nums, [hot_weights.get(n, 1) for n in all_nums]) for _ in range(red_count)]
+            blues = [self.rng.choice(red_hot[:5]) if red_hot and blue_count > 0 else self.rng.randint(blue_min, blue_max) for _ in range(blue_count)]
+            s = sum(reds)
+            score = 1.0 if abs(s - sum_mean) < sum_std else 0.5
+            add_candidate(reds, blues, "hot", score, f"热号为主 和值={s}")
+
+        # 策略2：冷号回补（25%）
+        n_cold = int(pool_size * 0.25)
+        cold_weights = {n: gap for n, gap in red_gap.items()}
+        for _ in range(n_cold * 5):
+            if len([c for c in candidates if c["strategy"] == "cold"]) >= n_cold:
+                break
+            reds = [weighted_pick(all_nums, [cold_weights.get(n, 1) for n in all_nums]) for _ in range(red_count)]
+            blues = [self.rng.choice(red_cold[:5]) if red_cold and blue_count > 0 else self.rng.randint(blue_min, blue_max) for _ in range(blue_count)]
+            s = sum(reds)
+            score = 0.8 if abs(s - sum_mean) < sum_std * 1.5 else 0.4
+            add_candidate(reds, blues, "cold", score, f"冷号回补 和值={s}")
+
+        # 策略3：冷热均衡（25%）
+        n_balance = int(pool_size * 0.25)
+        balance_weights = {n: (hot_weights.get(n, 1) + cold_weights.get(n, 1)) / 2 for n in all_nums}
+        for _ in range(n_balance * 5):
+            if len([c for c in candidates if c["strategy"] == "balance"]) >= n_balance:
+                break
+            reds = [weighted_pick(all_nums, [balance_weights.get(n, 1) for n in all_nums]) for _ in range(red_count)]
+            blues = [self.rng.randint(blue_min, blue_max) for _ in range(blue_count)]
+            s = sum(reds)
+            score = 0.9 if abs(s - sum_mean) < sum_std * 1.2 else 0.5
+            add_candidate(reds, blues, "balance", score, f"冷热均衡 和值={s}")
+
+        # 策略4：结构优化（20%）- 关注奇偶比、大小比
+        n_struct = pool_size - len(candidates)
+        for _ in range(n_struct * 5):
+            if len(candidates) >= pool_size:
+                break
+            # 生成结构合理的号码
+            reds = []
+            for pos in range(red_count):
+                if pos % 2 == 0:
+                    reds.append(self.rng.choice(red_hot[:8]) if red_hot else self.rng.randint(red_min, red_max))
+                else:
+                    reds.append(self.rng.choice(red_cold[:8]) if red_cold else self.rng.randint(red_min, red_max))
+            blues = [self.rng.randint(blue_min, blue_max) for _ in range(blue_count)]
+            s = sum(reds)
+            odd_count = sum(1 for r in reds if r % 2 == 1)
+            score = 0.85 if abs(s - sum_mean) < sum_std and 1 <= odd_count <= red_count - 1 else 0.4
+            add_candidate(reds, blues, "structure", score, f"结构优化 奇={odd_count} 和={s}")
+
+        # 不足则随机补充
+        while len(candidates) < pool_size:
+            reds = [self.rng.randint(red_min, red_max) for _ in range(red_count)]
+            blues = [self.rng.randint(blue_min, blue_max) for _ in range(blue_count)]
+            add_candidate(reds, blues, "random", 0.3, "随机补充")
+
+        return candidates
 
     def _build_stats_summary(self, analysis: Dict) -> Dict:
         """从分析结果构建统计摘要"""
