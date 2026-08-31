@@ -102,20 +102,23 @@ class AIService:
 4. 避免选择极端结构（全奇/全偶/和值极端/连号过多）。
 5. 每组号码之间应有所差异，不要高度相似。
 
-请以 JSON 格式输出，格式如下：
+【输出格式要求 - 必须严格遵守】
+1. 只输出合法的 JSON，不要输出任何其他文字、解释、markdown标记或代码块
+2. 不要在 JSON 中添加注释
+3. red_balls 和 blue_balls 必须是数字数组（不要用字符串，不要加前导零）
+4. reason 字段不要超过30字，不要包含换行、引号或特殊字符
+5. 严格按照以下格式输出：
 {{
   "selected": [
     {{
       "index": 1,
-      "red_balls": [01, 05, 12, 18, 25, 30],
-      "blue_balls": [08],
-      "reason": "简短理由（30字以内）"
+      "red_balls": [1, 5, 12, 18, 25, 30],
+      "blue_balls": [8],
+      "reason": "和值适中冷热均衡"
     }}
   ],
-  "overall_analysis": "整体分析说明（100字以内）"
-}}
-
-只输出 JSON，不要输出其他内容。"""
+  "overall_analysis": "整体分析说明"
+}}"""
 
         user_prompt = f"""彩种：{lottery_name}
 
@@ -146,75 +149,149 @@ class AIService:
                 for t in sorted_tickets[:count]
             ]
 
-        # 解析 AI 返回的 JSON
+        # 解析 AI 返回的 JSON（带重试和鲁棒解析）
+        final_tickets = self._parse_ai_response(response, candidate_tickets, count)
+        if final_tickets:
+            return final_tickets[:count]
+
+        # 解析失败时回退到评分排序
+        print("[AI] 解析失败，回退到统计评分排序")
+        sorted_tickets = sorted(candidate_tickets, key=lambda x: x.get("score", 0), reverse=True)
+        return [
+            {
+                "red_balls": t["red_balls"],
+                "blue_balls": t["blue_balls"],
+                "score": t.get("score", 0),
+                "ai_reason": "（AI返回解析失败，按统计评分排序）",
+            }
+            for t in sorted_tickets[:count]
+        ]
+
+    def _parse_ai_response(self, response: str, candidate_tickets: List[Dict],
+                            count: int) -> List[Dict]:
+        """鲁棒解析 AI 返回的 JSON（5层降级策略）"""
+        if not response:
+            return []
+
+        # 第1层：清理 markdown 代码块后直接解析
         try:
-            # 清理可能的 markdown 代码块标记
             cleaned = response.strip()
             if cleaned.startswith("```"):
-                cleaned = cleaned.split("\n", 1)[1] if "\n" in cleaned else cleaned
-                if cleaned.endswith("```"):
-                    cleaned = cleaned.rsplit("```", 1)[0]
-            cleaned = cleaned.strip()
-
-            # 找到 JSON 开始位置
+                lines = cleaned.split("\n")
+                if lines[0].strip().startswith("```"):
+                    lines = lines[1:]
+                if lines and lines[-1].strip().endswith("```"):
+                    lines = lines[:-1]
+                cleaned = "\n".join(lines).strip()
             json_start = cleaned.find("{")
-            if json_start >= 0:
-                cleaned = cleaned[json_start:]
             json_end = cleaned.rfind("}")
-            if json_end >= 0:
-                cleaned = cleaned[:json_end + 1]
-
+            if json_start >= 0 and json_end > json_start:
+                cleaned = cleaned[json_start:json_end + 1]
             result = json.loads(cleaned)
-            selected = result.get("selected", [])
-            overall = result.get("overall_analysis", "")
+            tickets = self._extract_tickets(result, candidate_tickets, count)
+            if tickets:
+                return tickets
+        except json.JSONDecodeError:
+            pass
 
-            final_tickets = []
-            for item in selected[:count]:
-                reds = sorted([int(n) for n in item.get("red_balls", [])])
-                blues = sorted([int(n) for n in item.get("blue_balls", [])])
+        # 第2层：正则提取 "selected": [...] 数组
+        try:
+            import re
+            match = re.search(r'"selected"\s*:\s*\[(.*?)\]\s*[,}]', response, re.DOTALL)
+            if match:
+                items = json.loads("[" + match.group(1) + "]")
+                tickets = self._extract_tickets({"selected": items}, candidate_tickets, count)
+                if tickets:
+                    return tickets
+        except (json.JSONDecodeError, AttributeError):
+            pass
+
+        # 第3层：正则提取每个号码对象 {..."red_balls"...}
+        try:
+            import re
+            pattern = r'\{[^{}]*"red_balls"[^{}]*\}'
+            matches = re.findall(pattern, response)
+            if matches:
+                items = []
+                for m in matches[:count]:
+                    try:
+                        items.append(json.loads(m))
+                    except json.JSONDecodeError:
+                        continue
+                if items:
+                    tickets = self._extract_tickets({"selected": items}, candidate_tickets, count)
+                    if tickets:
+                        return tickets
+        except Exception:
+            pass
+
+        # 第4层：尝试修复常见 JSON 错误（单引号、尾逗号等）
+        try:
+            import re
+            fixed = response
+            # 替换单引号为双引号（简单处理）
+            fixed = re.sub(r"'([^']*)'\s*:", r'"\1":', fixed)
+            # 移除尾逗号
+            fixed = re.sub(r',\s*([}\]])', r'\1', fixed)
+            json_start = fixed.find("{")
+            json_end = fixed.rfind("}")
+            if json_start >= 0 and json_end > json_start:
+                fixed = fixed[json_start:json_end + 1]
+            result = json.loads(fixed)
+            tickets = self._extract_tickets(result, candidate_tickets, count)
+            if tickets:
+                return tickets
+        except Exception:
+            pass
+
+        print(f"[AI] 所有解析策略均失败，原始返回前500字: {response[:500]}")
+        return []
+
+    def _extract_tickets(self, result: Dict, candidate_tickets: List[Dict],
+                          count: int) -> List[Dict]:
+        """从解析结果中提取号码，不足时用候选池补充"""
+        selected = result.get("selected", [])
+        overall = result.get("overall_analysis", "")
+        if not selected:
+            return []
+
+        final_tickets = []
+        for item in selected[:count]:
+            try:
+                reds = [int(n) for n in item.get("red_balls", [])]
+                blues = [int(n) for n in item.get("blue_balls", [])]
+                if not reds:
+                    continue
                 final_tickets.append({
-                    "red_balls": reds,
+                    "red_balls": reds,  # 不排序，保持原始顺序
                     "blue_balls": blues,
                     "score": 0,
                     "ai_reason": item.get("reason", ""),
                     "overall_analysis": overall,
                 })
+            except (ValueError, TypeError):
+                continue
 
-            # 如果 AI 返回的组数不足，用候选池补充
-            if len(final_tickets) < count:
-                existing_keys = set(
-                    (tuple(t["red_balls"]), tuple(t["blue_balls"])) for t in final_tickets
-                )
-                sorted_candidates = sorted(candidate_tickets, key=lambda x: x.get("score", 0), reverse=True)
-                for t in sorted_candidates:
-                    key = (tuple(t["red_balls"]), tuple(t["blue_balls"]))
-                    if key not in existing_keys:
-                        final_tickets.append({
-                            "red_balls": t["red_balls"],
-                            "blue_balls": t["blue_balls"],
-                            "score": t.get("score", 0),
-                            "ai_reason": "（补充候选）",
-                        })
-                        existing_keys.add(key)
-                        if len(final_tickets) >= count:
-                            break
+        # 不足时用候选池补充
+        if len(final_tickets) < count:
+            existing_keys = set(
+                (tuple(t["red_balls"]), tuple(t["blue_balls"])) for t in final_tickets
+            )
+            sorted_candidates = sorted(candidate_tickets, key=lambda x: x.get("score", 0), reverse=True)
+            for t in sorted_candidates:
+                key = (tuple(t["red_balls"]), tuple(t["blue_balls"]))
+                if key not in existing_keys:
+                    final_tickets.append({
+                        "red_balls": t["red_balls"],
+                        "blue_balls": t["blue_balls"],
+                        "score": t.get("score", 0),
+                        "ai_reason": "（补充候选）",
+                    })
+                    existing_keys.add(key)
+                    if len(final_tickets) >= count:
+                        break
 
-            return final_tickets[:count]
-
-        except (json.JSONDecodeError, KeyError, ValueError) as e:
-            print(f"[AI] 解析返回结果失败: {e}")
-            print(f"[AI] 原始返回: {response[:500]}")
-            # 回退到评分排序
-            sorted_tickets = sorted(candidate_tickets, key=lambda x: x.get("score", 0), reverse=True)
-            return [
-                {
-                    "red_balls": t["red_balls"],
-                    "blue_balls": t["blue_balls"],
-                    "score": t.get("score", 0),
-                    "ai_reason": "（AI返回解析失败，按统计评分排序）",
-                }
-                for t in sorted_tickets[:count]
-            ]
+        return final_tickets[:count] if final_tickets else []
 
     def generate_analysis_report(self, lottery_name: str, stats_summary: Dict,
                                   selected_tickets: List[Dict]) -> str:
