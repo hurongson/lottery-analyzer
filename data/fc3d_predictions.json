@@ -7,93 +7,25 @@
     "candidate_tickets": [
       {
         "red_balls": [
-          7,
-          0,
-          4
-        ],
-        "blue_balls": [],
-        "score": 1.0,
-        "ai_reason": "（AI返回解析失败，按统计评分排序）"
-      },
-      {
-        "red_balls": [
-          2,
-          8,
-          7
-        ],
-        "blue_balls": [],
-        "score": 1.0,
-        "ai_reason": "（AI返回解析失败，按统计评分排序）"
-      },
-      {
-        "red_balls": [
-          9,
-          0,
-          6
-        ],
-        "blue_balls": [],
-        "score": 1.0,
-        "ai_reason": "（AI返回解析失败，按统计评分排序）"
-      },
-      {
-        "red_balls": [
-          7,
-          2,
-          7
-        ],
-        "blue_balls": [],
-        "score": 1.0,
-        "ai_reason": "（AI返回解析失败，按统计评分排序）"
-      },
-      {
-        "red_balls": [
-          8,
-          0,
-          8
-        ],
-        "blue_balls": [],
-        "score": 1.0,
-        "ai_reason": "（AI返回解析失败，按统计评分排序）"
-      },
-      {
-        "red_balls": [
-          8,
-          4,
-          1
-        ],
-        "blue_balls": [],
-        "score": 1.0,
-        "ai_reason": "（AI返回解析失败，按统计评分排序）"
-      },
-      {
-        "red_balls": [
           9,
           4,
           1
         ],
         "blue_balls": [],
-        "score": 1.0,
-        "ai_reason": "（AI返回解析失败，按统计评分排序）"
+        "score": 0,
+        "ai_reason": "和值14适中冷热均衡",
+        "overall_analysis": "筛选基于和值适中、奇偶比1:2或2:1、冷热均衡，避免极端组合，确保号码结构合理。"
       },
       {
         "red_balls": [
-          1,
-          8,
-          7
+          2,
+          9,
+          3
         ],
         "blue_balls": [],
-        "score": 1.0,
-        "ai_reason": "（AI返回解析失败，按统计评分排序）"
-      },
-      {
-        "red_balls": [
-          7,
-          8,
-          0
-        ],
-        "blue_balls": [],
-        "score": 1.0,
-        "ai_reason": "（AI返回解析失败，按统计评分排序）"
+        "score": 0,
+        "ai_reason": "和值14奇偶比2:1",
+        "overall_analysis": "筛选基于和值适中、奇偶比1:2或2:1、冷热均衡，避免极端组合，确保号码结构合理。"
       },
       {
         "red_balls": [
@@ -102,10 +34,88 @@
           9
         ],
         "blue_balls": [],
-        "score": 0.9,
-        "ai_reason": "（AI返回解析失败，按统计评分排序）"
+        "score": 0,
+        "ai_reason": "评分高冷热均衡",
+        "overall_analysis": "筛选基于和值适中、奇偶比1:2或2:1、冷热均衡，避免极端组合，确保号码结构合理。"
+      },
+      {
+        "red_balls": [
+          8,
+          4,
+          1
+        ],
+        "blue_balls": [],
+        "score": 0,
+        "ai_reason": "和值13接近均值",
+        "overall_analysis": "筛选基于和值适中、奇偶比1:2或2:1、冷热均衡，避免极端组合，确保号码结构合理。"
+      },
+      {
+        "red_balls": [
+          7,
+          8,
+          0
+        ],
+        "blue_balls": [],
+        "score": 0,
+        "ai_reason": "和值15热号组合",
+        "overall_analysis": "筛选基于和值适中、奇偶比1:2或2:1、冷热均衡，避免极端组合，确保号码结构合理。"
+      },
+      {
+        "red_balls": [
+          4,
+          7,
+          4
+        ],
+        "blue_balls": [],
+        "score": 0,
+        "ai_reason": "和值15冷热搭配",
+        "overall_analysis": "筛选基于和值适中、奇偶比1:2或2:1、冷热均衡，避免极端组合，确保号码结构合理。"
+      },
+      {
+        "red_balls": [
+          9,
+          2,
+          4
+        ],
+        "blue_balls": [],
+        "score": 0,
+        "ai_reason": "和值15奇偶均衡",
+        "overall_analysis": "筛选基于和值适中、奇偶比1:2或2:1、冷热均衡，避免极端组合，确保号码结构合理。"
+      },
+      {
+        "red_balls": [
+          1,
+          4,
+          9
+        ],
+        "blue_balls": [],
+        "score": 0,
+        "ai_reason": "和值14冷号回补",
+        "overall_analysis": "筛选基于和值适中、奇偶比1:2或2:1、冷热均衡，避免极端组合，确保号码结构合理。"
+      },
+      {
+        "red_balls": [
+          1,
+          7,
+          8
+        ],
+        "blue_balls": [],
+        "score": 0,
+        "ai_reason": "和值16热号组合",
+        "overall_analysis": "筛选基于和值适中、奇偶比1:2或2:1、冷热均衡，避免极端组合，确保号码结构合理。"
+      },
+      {
+        "red_balls": [
+          2,
+          8,
+          7
+        ],
+        "blue_balls": [],
+        "score": 0,
+        "ai_reason": "和值17评分最高",
+        "overall_analysis": "筛选基于和值适中、奇偶比1:2或2:1、冷热均衡，避免极端组合，确保号码结构合理。"
       }
     ],
-    "created_at": "2026-08-31 08:28:08"
+    "created_at": "2026-08-31 11:38:54"
   }
 ]
