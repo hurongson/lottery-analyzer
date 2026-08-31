@@ -1,0 +1,161 @@
+[
+  {
+    "lottery_type": "dlt",
+    "target_issue": "26099",
+    "strategy_name": "AI推荐",
+    "strategy_params": null,
+    "candidate_tickets": [
+      {
+        "red_balls": [
+          2,
+          3,
+          4,
+          33,
+          34
+        ],
+        "blue_balls": [
+          7,
+          10
+        ],
+        "score": 1.0,
+        "ai_reason": "（AI返回解析失败，按统计评分排序）"
+      },
+      {
+        "red_balls": [
+          3,
+          14,
+          28,
+          29,
+          30
+        ],
+        "blue_balls": [
+          7,
+          12
+        ],
+        "score": 1.0,
+        "ai_reason": "（AI返回解析失败，按统计评分排序）"
+      },
+      {
+        "red_balls": [
+          5,
+          12,
+          29,
+          30,
+          32
+        ],
+        "blue_balls": [
+          2,
+          5
+        ],
+        "score": 1.0,
+        "ai_reason": "（AI返回解析失败，按统计评分排序）"
+      },
+      {
+        "red_balls": [
+          6,
+          7,
+          22,
+          30,
+          35
+        ],
+        "blue_balls": [
+          10,
+          12
+        ],
+        "score": 1.0,
+        "ai_reason": "（AI返回解析失败，按统计评分排序）"
+      },
+      {
+        "red_balls": [
+          3,
+          5,
+          22,
+          32,
+          33
+        ],
+        "blue_balls": [
+          2,
+          10
+        ],
+        "score": 1.0,
+        "ai_reason": "（AI返回解析失败，按统计评分排序）"
+      },
+      {
+        "red_balls": [
+          3,
+          5,
+          16,
+          22,
+          30
+        ],
+        "blue_balls": [
+          5,
+          10
+        ],
+        "score": 1.0,
+        "ai_reason": "（AI返回解析失败，按统计评分排序）"
+      },
+      {
+        "red_balls": [
+          7,
+          10,
+          18,
+          34,
+          35
+        ],
+        "blue_balls": [
+          5,
+          7
+        ],
+        "score": 1.0,
+        "ai_reason": "（AI返回解析失败，按统计评分排序）"
+      },
+      {
+        "red_balls": [
+          3,
+          5,
+          17,
+          26,
+          34
+        ],
+        "blue_balls": [
+          7,
+          12
+        ],
+        "score": 1.0,
+        "ai_reason": "（AI返回解析失败，按统计评分排序）"
+      },
+      {
+        "red_balls": [
+          5,
+          11,
+          12,
+          29,
+          33
+        ],
+        "blue_balls": [
+          10,
+          12
+        ],
+        "score": 1.0,
+        "ai_reason": "（AI返回解析失败，按统计评分排序）"
+      },
+      {
+        "red_balls": [
+          1,
+          17,
+          26,
+          28,
+          32
+        ],
+        "blue_balls": [
+          6,
+          7
+        ],
+        "score": 0.8,
+        "ai_reason": "（AI返回解析失败，按统计评分排序）"
+      }
+    ],
+    "created_at": "2026-08-31 10:44:13"
+  }
+]
