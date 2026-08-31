@@ -1,0 +1,59 @@
+name: 每日数据更新
+
+on:
+  schedule:
+    # 每天北京时间 22:30 运行（双色球开奖日：周二、周四、周日）
+    - cron: '30 14 * * 2,4,0'
+  workflow_dispatch:
+
+jobs:
+  update-data:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v4
+
+      - name: 设置 Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: 安装依赖
+        run: |
+          pip install -q pandas numpy requests beautifulsoup4 lxml
+
+      - name: 采集最新数据并更新 CSV
+        run: |
+          python3 -c "
+          import sys
+          sys.path.insert(0, '.')
+          from src.storage.database import Database
+          from src.storage.data_manager import DataManager
+          from src.collector.ssq_collector import collect_ssq_data
+
+          # 从 CSV 导入已有数据到 SQLite
+          dm = DataManager('ssq')
+          count = dm.import_from_csv()
+          print(f'从 CSV 导入: {count} 条')
+
+          # 增量采集
+          db = Database()
+          result = collect_ssq_data(db, full_refresh=False)
+          print(f'采集结果: {result}')
+
+          # 导出回 CSV
+          path = dm.export_to_csv()
+          print(f'CSV 已更新: {path}')
+
+          # 校验
+          verify = dm.verify_data_integrity()
+          print(f'数据校验: {\"通过\" if verify[\"passed\"] else \"失败\"} ({verify[\"total_count\"]} 条)')
+          "
+
+      - name: 提交更新
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add data/ssq_draws.csv
+          git diff --staged --quiet || git commit -m "自动更新彩票数据 $(date +'%Y-%m-%d')"
+          git push
