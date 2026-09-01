@@ -9,6 +9,7 @@ import pandas as pd
 
 from src.models import get_lottery
 from src.analysis.statistics import LotteryStatistics
+from src.analysis.advanced_analysis import AdvancedAnalyzer
 from src.ai.ai_service import AIService
 
 
@@ -19,6 +20,7 @@ class NumberGenerator:
         self.lottery_type = lottery_type
         self.lottery = get_lottery(lottery_type)
         self.stats = LotteryStatistics(lottery_type)
+        self.advanced = AdvancedAnalyzer(lottery_type)
         self.ai = ai_service or AIService()
         self.rng = random.Random(seed) if seed is not None else random.Random()
         from config import LOTTERY_RULES
@@ -39,15 +41,19 @@ class NumberGenerator:
         """
         # 1. 统计分析
         analysis = self.stats.analyze(history_df)
-        stats_summary = self._build_stats_summary(analysis)
+        advanced = self.advanced.analyze(history_df)
+        stats_summary = self._build_stats_summary(analysis, advanced)
 
         # 2. 生成候选池（数字型彩票用专门逻辑）
         if self.is_digital:
-            candidates = self._generate_digital_candidates(history_df, analysis, candidate_pool_size)
+            candidates = self._generate_digital_candidates(history_df, analysis, advanced, candidate_pool_size)
         else:
-            candidates = self._generate_candidates(history_df, analysis, candidate_pool_size)
+            candidates = self._generate_candidates(history_df, analysis, advanced, candidate_pool_size)
 
-        # 3. AI 筛选
+        # 3. 覆盖度优化：确保10组号码覆盖尽可能多的号码
+        candidates = self._optimize_coverage(candidates, count)
+
+        # 4. AI 筛选
         selected = self.ai.select_lottery_numbers(
             self.lottery.name, candidates, stats_summary, count
         )
@@ -60,7 +66,7 @@ class NumberGenerator:
         return selected, stats_summary, analysis_text
 
     def _generate_digital_candidates(self, history_df: pd.DataFrame, analysis: Dict,
-                                       pool_size: int = 50) -> List[Dict]:
+                                       advanced: Dict = None, pool_size: int = 50) -> List[Dict]:
         """数字型彩票候选池生成（允许重复，有位置概念）"""
         candidates = []
         seen = set()
@@ -72,6 +78,13 @@ class NumberGenerator:
         red_hot = freq.get("red_hot10", [])
         red_cold = freq.get("red_cold10", [])
         red_gap = omission.get("red_current_gap", {})
+
+        # 增强分析
+        recency_scores = {}
+        composite_scores = {}
+        if advanced:
+            recency_scores = advanced.get("recency_weighted", {}).get("red_scores", {})
+            composite_scores = advanced.get("composite_scores", {}).get("red_scores", {})
 
         red_min, red_max = self.lottery.red_range
         blue_min, blue_max = self.lottery.blue_range
@@ -99,6 +112,9 @@ class NumberGenerator:
             return numbers[-1]
 
         def add_candidate(reds, blues, strategy_name, score, features=""):
+            # 数字型彩票：过滤全同号（如000、111）等极端形态
+            if len(set(reds)) == 1:  # 所有数字都相同
+                return False
             key = (tuple(reds), tuple(blues))  # 数字型不排序，顺序有意义
             if key not in seen and self.lottery.is_valid_ticket(reds, blues):
                 seen.add(key)
@@ -176,8 +192,8 @@ class NumberGenerator:
 
         return candidates
 
-    def _build_stats_summary(self, analysis: Dict) -> Dict:
-        """从分析结果构建统计摘要"""
+    def _build_stats_summary(self, analysis: Dict, advanced: Dict = None) -> Dict:
+        """从分析结果构建统计摘要（包含增强分析）"""
         summary = {}
 
         freq = analysis.get("frequency", {})
@@ -202,13 +218,85 @@ class NumberGenerator:
         if zone.get("most_common"):
             summary["common_zone"] = zone["most_common"][0][0]
 
+        # 增强分析数据
+        if advanced:
+            recency = advanced.get("recency_weighted", {})
+            if recency:
+                summary["recent_hot"] = recency.get("hot_red", [])[:6]
+                summary["recent_cold"] = recency.get("cold_red", [])[:6]
+
+            composite = advanced.get("composite_scores", {})
+            if composite:
+                summary["composite_top"] = composite.get("top_red", [])[:6]
+
+            optimal_sum = advanced.get("optimal_sum_range", {})
+            if optimal_sum:
+                ranges = optimal_sum.get("optimal_ranges", [])
+                if ranges:
+                    summary["optimal_sum_ranges"] = [f"{r['range'][0]}-{r['range'][1]}" for r in ranges[:3]]
+
+            trend = advanced.get("recent_trend_strength", {})
+            if trend:
+                summary["strong_hot"] = trend.get("strong_hot", [])[:5]
+                summary["strong_cold"] = trend.get("strong_cold", [])[:5]
+
+            pair_corr = advanced.get("pair_correlation", {})
+            if pair_corr:
+                pos_pairs = pair_corr.get("positive_correlation", [])
+                if pos_pairs:
+                    summary["hot_pairs"] = [f"{p[0][0]}-{p[0][1]}" for p in pos_pairs[:5]]
+
         return summary
 
+    def _optimize_coverage(self, candidates: List[Dict], target_count: int) -> List[Dict]:
+        """
+        覆盖度优化：从候选池中选出覆盖度最高的 target_count 组号码
+        使用贪心算法，每次选择覆盖最多新号码的候选
+        """
+        if len(candidates) <= target_count:
+            return candidates
+
+        selected = []
+        covered = set()
+        remaining = candidates.copy()
+
+        for _ in range(target_count):
+            best_candidate = None
+            best_new_coverage = -1
+
+            for c in remaining:
+                reds = set(c.get("red_balls", []))
+                blues = set(c.get("blue_balls", []))
+                new_coverage = len((reds | blues) - covered)
+                # 综合评分：新覆盖度 + 原始分数
+                total_score = new_coverage * 2 + c.get("score", 0)
+                if total_score > best_new_coverage:
+                    best_new_coverage = total_score
+                    best_candidate = c
+
+            if best_candidate:
+                selected.append(best_candidate)
+                covered.update(best_candidate.get("red_balls", []))
+                covered.update(best_candidate.get("blue_balls", []))
+                remaining.remove(best_candidate)
+            else:
+                break
+
+        # 如果选不够，用剩余候选补充
+        if len(selected) < target_count:
+            for c in remaining:
+                if c not in selected:
+                    selected.append(c)
+                    if len(selected) >= target_count:
+                        break
+
+        return selected[:target_count]
+
     def _generate_candidates(self, history_df: pd.DataFrame, analysis: Dict,
-                              pool_size: int = 50) -> List[Dict]:
+                              advanced: Dict = None, pool_size: int = 50) -> List[Dict]:
         """
         生成候选号码池
-        使用多种策略生成，确保多样性
+        使用多种策略生成，确保多样性，过滤极端形态
         """
         candidates = []
         seen = set()
@@ -224,6 +312,15 @@ class NumberGenerator:
         red_gap = omission.get("red_current_gap", {})
         blue_gap = omission.get("blue_current_gap", {})
 
+        # 增强分析数据
+        recency_scores = {}
+        composite_scores = {}
+        positional_hot = {}
+        if advanced:
+            recency_scores = advanced.get("recency_weighted", {}).get("red_scores", {})
+            composite_scores = advanced.get("composite_scores", {}).get("red_scores", {})
+            positional_hot = advanced.get("positional_frequency", {}).get("red_positional_hot", {})
+
         red_min, red_max = self.lottery.red_range
         blue_min, blue_max = self.lottery.blue_range
         red_count = self.lottery.red_count
@@ -233,6 +330,9 @@ class NumberGenerator:
         sum_std = sum_stats.get("std", 20)
 
         def add_candidate(reds, blues, strategy_name, score, features=""):
+            # 极端形态过滤
+            if self.advanced.is_extreme_ticket(reds, blues):
+                return False
             key = (tuple(sorted(reds)), tuple(sorted(blues)))
             if key not in seen and self.lottery.is_valid_ticket(reds, blues):
                 seen.add(key)

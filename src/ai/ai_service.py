@@ -337,22 +337,38 @@ class AIService:
         return response if response else self._generate_template_report(lottery_name, stats_summary, selected_tickets)
 
     def _format_stats_summary(self, stats: Dict) -> str:
-        """格式化统计摘要为文本"""
+        """格式化统计摘要为文本（包含增强分析）"""
         lines = []
         if "hot_red" in stats:
             lines.append(f"红球热号：{' '.join(f'{n:02d}' for n in stats['hot_red'][:6])}")
         if "cold_red" in stats:
             lines.append(f"红球冷号：{' '.join(f'{n:02d}' for n in stats['cold_red'][:6])}")
-        if "hot_blue" in stats:
+        if "hot_blue" in stats and stats["hot_blue"]:
             lines.append(f"蓝球热号：{' '.join(f'{n:02d}' for n in stats['hot_blue'][:3])}")
-        if "cold_blue" in stats:
+        if "cold_blue" in stats and stats["cold_blue"]:
             lines.append(f"蓝球冷号：{' '.join(f'{n:02d}' for n in stats['cold_blue'][:3])}")
+        if "recent_hot" in stats and stats["recent_hot"]:
+            lines.append(f"近期热号(衰减加权)：{' '.join(f'{n:02d}' for n in stats['recent_hot'][:5])}")
+        if "recent_cold" in stats and stats["recent_cold"]:
+            lines.append(f"近期冷号(衰减加权)：{' '.join(f'{n:02d}' for n in stats['recent_cold'][:5])}")
+        if "composite_top" in stats and stats["composite_top"]:
+            lines.append(f"综合评分TOP：{' '.join(f'{n:02d}' for n in stats['composite_top'][:5])}")
+        if "strong_hot" in stats and stats["strong_hot"]:
+            lines.append(f"强势热号(近期>期望1.5倍)：{' '.join(f'{n:02d}' for n in stats['strong_hot'][:5])}")
+        if "strong_cold" in stats and stats["strong_cold"]:
+            lines.append(f"强势冷号(近期<期望0.5倍)：{' '.join(f'{n:02d}' for n in stats['strong_cold'][:5])}")
         if "sum_range" in stats:
             lines.append(f"和值区间：{stats['sum_range']}")
+        if "optimal_sum_ranges" in stats and stats["optimal_sum_ranges"]:
+            lines.append(f"最优和值区间：{', '.join(stats['optimal_sum_ranges'])}")
         if "common_parity" in stats:
             lines.append(f"常见奇偶比：{stats['common_parity']}")
-        if "omission_red" in stats:
-            lines.append(f"红球高遗漏：{' '.join(f'{n:02d}({g}期)' for n, g in stats['omission_red'][:5])}")
+        if "hot_pairs" in stats and stats["hot_pairs"]:
+            lines.append(f"高频配对：{', '.join(stats['hot_pairs'][:5])}")
+        if "omission_red" in stats and stats["omission_red"]:
+            omission_items = [(n, g) for n, g in stats['omission_red'][:5] if isinstance(g, (int, float))]
+            if omission_items:
+                lines.append(f"红球高遗漏：{' '.join(f'{n:02d}({g}期)' for n, g in omission_items)}")
         return "\n".join(lines) if lines else "（无统计数据）"
 
     def _generate_template_report(self, lottery_name: str, stats: Dict,
