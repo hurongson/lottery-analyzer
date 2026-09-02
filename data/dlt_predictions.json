@@ -167,5 +167,174 @@
       }
     ],
     "created_at": "2026-08-31 11:38:46"
+  },
+  {
+    "lottery_type": "dlt",
+    "target_issue": "26100",
+    "strategy_name": "AI推荐",
+    "strategy_params": null,
+    "candidate_tickets": [
+      {
+        "red_balls": [
+          5,
+          13,
+          16,
+          19,
+          35
+        ],
+        "blue_balls": [
+          4,
+          11
+        ],
+        "score": 0,
+        "ai_reason": "和值88适中冷热均衡",
+        "overall_analysis": "兼顾冷热号、和值区间及奇偶比，整体结构均衡。"
+      },
+      {
+        "red_balls": [
+          1,
+          21,
+          23,
+          27,
+          34
+        ],
+        "blue_balls": [
+          6,
+          12
+        ],
+        "score": 0,
+        "ai_reason": "和值106含高遗漏号",
+        "overall_analysis": "兼顾冷热号、和值区间及奇偶比，整体结构均衡。"
+      },
+      {
+        "red_balls": [
+          3,
+          14,
+          28,
+          29,
+          30
+        ],
+        "blue_balls": [
+          7,
+          12
+        ],
+        "score": 0,
+        "ai_reason": "热号为主和值合理",
+        "overall_analysis": "兼顾冷热号、和值区间及奇偶比，整体结构均衡。"
+      },
+      {
+        "red_balls": [
+          7,
+          10,
+          18,
+          34,
+          35
+        ],
+        "blue_balls": [
+          5,
+          7
+        ],
+        "score": 0,
+        "ai_reason": "冷热结合和值适中",
+        "overall_analysis": "兼顾冷热号、和值区间及奇偶比，整体结构均衡。"
+      },
+      {
+        "red_balls": [
+          3,
+          5,
+          17,
+          26,
+          34
+        ],
+        "blue_balls": [
+          7,
+          12
+        ],
+        "score": 0,
+        "ai_reason": "和值85偏低但结构好",
+        "overall_analysis": "兼顾冷热号、和值区间及奇偶比，整体结构均衡。"
+      },
+      {
+        "red_balls": [
+          2,
+          3,
+          4,
+          33,
+          34
+        ],
+        "blue_balls": [
+          7,
+          10
+        ],
+        "score": 0,
+        "ai_reason": "热号主导和值略低",
+        "overall_analysis": "兼顾冷热号、和值区间及奇偶比，整体结构均衡。"
+      },
+      {
+        "red_balls": [
+          9,
+          14,
+          31,
+          32,
+          35
+        ],
+        "blue_balls": [
+          4,
+          10
+        ],
+        "score": 0,
+        "ai_reason": "和值121偏高冷热有",
+        "overall_analysis": "兼顾冷热号、和值区间及奇偶比，整体结构均衡。"
+      },
+      {
+        "red_balls": [
+          7,
+          22,
+          25,
+          26,
+          35
+        ],
+        "blue_balls": [
+          5,
+          7
+        ],
+        "score": 0,
+        "ai_reason": "热号集中和值适中",
+        "overall_analysis": "兼顾冷热号、和值区间及奇偶比，整体结构均衡。"
+      },
+      {
+        "red_balls": [
+          4,
+          5,
+          8,
+          27,
+          32
+        ],
+        "blue_balls": [
+          4,
+          5
+        ],
+        "score": 0,
+        "ai_reason": "冷号回补和值偏低",
+        "overall_analysis": "兼顾冷热号、和值区间及奇偶比，整体结构均衡。"
+      },
+      {
+        "red_balls": [
+          15,
+          16,
+          29,
+          32,
+          33
+        ],
+        "blue_balls": [
+          7,
+          10
+        ],
+        "score": 0,
+        "ai_reason": "和值125偏高但热号",
+        "overall_analysis": "兼顾冷热号、和值区间及奇偶比，整体结构均衡。"
+      }
+    ],
+    "created_at": "2026-09-02 10:59:16"
   }
 ]
