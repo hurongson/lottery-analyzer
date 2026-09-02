@@ -7,69 +7,25 @@
     "candidate_tickets": [
       {
         "red_balls": [
+          7,
+          0,
+          4
+        ],
+        "blue_balls": [],
+        "score": 0,
+        "ai_reason": "和值适中含冷号",
+        "overall_analysis": "筛选的号码和值均在8-17之间，符合最优区间，奇偶比多为1:2，兼顾热号与遗漏号码，结构均衡。"
+      },
+      {
+        "red_balls": [
           2,
           5,
           1
         ],
         "blue_balls": [],
         "score": 0,
-        "ai_reason": "冷热均衡和值适中",
-        "overall_analysis": "综合评分和统计特征筛选，优先均衡结构，兼顾冷热，避免极端。"
-      },
-      {
-        "red_balls": [
-          2,
-          9,
-          3
-        ],
-        "blue_balls": [],
-        "score": 0,
-        "ai_reason": "冷号回补和值佳",
-        "overall_analysis": "综合评分和统计特征筛选，优先均衡结构，兼顾冷热，避免极端。"
-      },
-      {
-        "red_balls": [
-          2,
-          8,
-          7
-        ],
-        "blue_balls": [],
-        "score": 0,
-        "ai_reason": "热号组合和值合理",
-        "overall_analysis": "综合评分和统计特征筛选，优先均衡结构，兼顾冷热，避免极端。"
-      },
-      {
-        "red_balls": [
-          8,
-          4,
-          1
-        ],
-        "blue_balls": [],
-        "score": 0,
-        "ai_reason": "热冷搭配分布均匀",
-        "overall_analysis": "综合评分和统计特征筛选，优先均衡结构，兼顾冷热，避免极端。"
-      },
-      {
-        "red_balls": [
-          9,
-          4,
-          1
-        ],
-        "blue_balls": [],
-        "score": 0,
-        "ai_reason": "奇偶比佳和值适中",
-        "overall_analysis": "综合评分和统计特征筛选，优先均衡结构，兼顾冷热，避免极端。"
-      },
-      {
-        "red_balls": [
-          1,
-          8,
-          7
-        ],
-        "blue_balls": [],
-        "score": 0,
-        "ai_reason": "热号为主和值合理",
-        "overall_analysis": "综合评分和统计特征筛选，优先均衡结构，兼顾冷热，避免极端。"
+        "ai_reason": "冷热均衡和值低",
+        "overall_analysis": "筛选的号码和值均在8-17之间，符合最优区间，奇偶比多为1:2，兼顾热号与遗漏号码，结构均衡。"
       },
       {
         "red_balls": [
@@ -79,19 +35,30 @@
         ],
         "blue_balls": [],
         "score": 0,
-        "ai_reason": "热号组合和值偏高",
-        "overall_analysis": "综合评分和统计特征筛选，优先均衡结构，兼顾冷热，避免极端。"
+        "ai_reason": "和值适中热号为主",
+        "overall_analysis": "筛选的号码和值均在8-17之间，符合最优区间，奇偶比多为1:2，兼顾热号与遗漏号码，结构均衡。"
       },
       {
         "red_balls": [
-          7,
-          0,
-          4
+          2,
+          8,
+          7
         ],
         "blue_balls": [],
         "score": 0,
-        "ai_reason": "热号为主和值偏低",
-        "overall_analysis": "综合评分和统计特征筛选，优先均衡结构，兼顾冷热，避免极端。"
+        "ai_reason": "热号集中和值佳",
+        "overall_analysis": "筛选的号码和值均在8-17之间，符合最优区间，奇偶比多为1:2，兼顾热号与遗漏号码，结构均衡。"
+      },
+      {
+        "red_balls": [
+          2,
+          9,
+          3
+        ],
+        "blue_balls": [],
+        "score": 0,
+        "ai_reason": "冷号回补和值好",
+        "overall_analysis": "筛选的号码和值均在8-17之间，符合最优区间，奇偶比多为1:2，兼顾热号与遗漏号码，结构均衡。"
       },
       {
         "red_balls": [
@@ -101,8 +68,8 @@
         ],
         "blue_balls": [],
         "score": 0,
-        "ai_reason": "热号重复和值适中",
-        "overall_analysis": "综合评分和统计特征筛选，优先均衡结构，兼顾冷热，避免极端。"
+        "ai_reason": "和值适中热号为主",
+        "overall_analysis": "筛选的号码和值均在8-17之间，符合最优区间，奇偶比多为1:2，兼顾热号与遗漏号码，结构均衡。"
       },
       {
         "red_balls": [
@@ -112,10 +79,43 @@
         ],
         "blue_balls": [],
         "score": 0,
-        "ai_reason": "热号重复和值偏高",
-        "overall_analysis": "综合评分和统计特征筛选，优先均衡结构，兼顾冷热，避免极端。"
+        "ai_reason": "热号重复和值合理",
+        "overall_analysis": "筛选的号码和值均在8-17之间，符合最优区间，奇偶比多为1:2，兼顾热号与遗漏号码，结构均衡。"
+      },
+      {
+        "red_balls": [
+          8,
+          4,
+          1
+        ],
+        "blue_balls": [],
+        "score": 0,
+        "ai_reason": "和值适中含冷号",
+        "overall_analysis": "筛选的号码和值均在8-17之间，符合最优区间，奇偶比多为1:2，兼顾热号与遗漏号码，结构均衡。"
+      },
+      {
+        "red_balls": [
+          9,
+          4,
+          1
+        ],
+        "blue_balls": [],
+        "score": 0,
+        "ai_reason": "和值佳冷热组合",
+        "overall_analysis": "筛选的号码和值均在8-17之间，符合最优区间，奇偶比多为1:2，兼顾热号与遗漏号码，结构均衡。"
+      },
+      {
+        "red_balls": [
+          1,
+          8,
+          7
+        ],
+        "blue_balls": [],
+        "score": 0,
+        "ai_reason": "和值佳热号集中",
+        "overall_analysis": "筛选的号码和值均在8-17之间，符合最优区间，奇偶比多为1:2，兼顾热号与遗漏号码，结构均衡。"
       }
     ],
-    "created_at": "2026-09-01 12:35:10"
+    "created_at": "2026-09-02 11:43:09"
   }
 ]
