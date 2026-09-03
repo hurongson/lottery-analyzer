@@ -326,5 +326,174 @@
       }
     ],
     "created_at": "2026-09-01 12:35:00"
+  },
+  {
+    "lottery_type": "ssq",
+    "target_issue": "26102",
+    "strategy_name": "AI推荐",
+    "strategy_params": null,
+    "candidate_tickets": [
+      {
+        "red_balls": [
+          2,
+          13,
+          14,
+          28,
+          29,
+          31
+        ],
+        "blue_balls": [
+          6
+        ],
+        "score": 0,
+        "ai_reason": "和值适中奇偶均衡",
+        "overall_analysis": "综合筛选兼顾和值区间、奇偶比、冷热号及区间分布，避免极端结构，整体均衡。"
+      },
+      {
+        "red_balls": [
+          9,
+          10,
+          15,
+          21,
+          22,
+          26
+        ],
+        "blue_balls": [
+          11
+        ],
+        "score": 0,
+        "ai_reason": "和值最优区间分布均匀",
+        "overall_analysis": "综合筛选兼顾和值区间、奇偶比、冷热号及区间分布，避免极端结构，整体均衡。"
+      },
+      {
+        "red_balls": [
+          3,
+          5,
+          12,
+          14,
+          17,
+          30
+        ],
+        "blue_balls": [
+          8
+        ],
+        "score": 0,
+        "ai_reason": "冷热搭配结构合理",
+        "overall_analysis": "综合筛选兼顾和值区间、奇偶比、冷热号及区间分布，避免极端结构，整体均衡。"
+      },
+      {
+        "red_balls": [
+          6,
+          15,
+          18,
+          19,
+          24,
+          27
+        ],
+        "blue_balls": [
+          10
+        ],
+        "score": 0,
+        "ai_reason": "和值适中奇偶平衡",
+        "overall_analysis": "综合筛选兼顾和值区间、奇偶比、冷热号及区间分布，避免极端结构，整体均衡。"
+      },
+      {
+        "red_balls": [
+          1,
+          2,
+          5,
+          20,
+          23,
+          33
+        ],
+        "blue_balls": [
+          15
+        ],
+        "score": 0,
+        "ai_reason": "冷号回补蓝球热号",
+        "overall_analysis": "综合筛选兼顾和值区间、奇偶比、冷热号及区间分布，避免极端结构，整体均衡。"
+      },
+      {
+        "red_balls": [
+          4,
+          8,
+          16,
+          19,
+          26,
+          29
+        ],
+        "blue_balls": [
+          2
+        ],
+        "score": 0,
+        "ai_reason": "区间均衡遗漏回补",
+        "overall_analysis": "综合筛选兼顾和值区间、奇偶比、冷热号及区间分布，避免极端结构，整体均衡。"
+      },
+      {
+        "red_balls": [
+          7,
+          14,
+          21,
+          22,
+          28,
+          32
+        ],
+        "blue_balls": [
+          9
+        ],
+        "score": 0,
+        "ai_reason": "和值偏高但含冷号",
+        "overall_analysis": "综合筛选兼顾和值区间、奇偶比、冷热号及区间分布，避免极端结构，整体均衡。"
+      },
+      {
+        "red_balls": [
+          1,
+          2,
+          11,
+          18,
+          25,
+          28
+        ],
+        "blue_balls": [
+          5
+        ],
+        "score": 0,
+        "ai_reason": "和值偏低结构均衡",
+        "overall_analysis": "综合筛选兼顾和值区间、奇偶比、冷热号及区间分布，避免极端结构，整体均衡。"
+      },
+      {
+        "red_balls": [
+          2,
+          7,
+          10,
+          13,
+          19,
+          33
+        ],
+        "blue_balls": [
+          2
+        ],
+        "score": 0,
+        "ai_reason": "奇偶比4:2遗漏覆盖",
+        "overall_analysis": "综合筛选兼顾和值区间、奇偶比、冷热号及区间分布，避免极端结构，整体均衡。"
+      },
+      {
+        "red_balls": [
+          6,
+          17,
+          19,
+          22,
+          27,
+          30
+        ],
+        "blue_balls": [
+          11
+        ],
+        "score": 0,
+        "ai_reason": "和值偏高冷热兼备",
+        "overall_analysis": "综合筛选兼顾和值区间、奇偶比、冷热号及区间分布，避免极端结构，整体均衡。"
+      }
+    ],
+    "created_at": "2026-09-03 11:42:15"
   }
 ]

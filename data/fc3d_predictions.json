@@ -14,7 +14,7 @@
         "blue_balls": [],
         "score": 0,
         "ai_reason": "和值适中含冷号04",
-        "overall_analysis": "筛选基于和值适中、奇偶比和冷热均衡，优先选择含高遗漏04的组，避免重复结构。"
+        "overall_analysis": "基于统计特征筛选，兼顾和值、冷热和奇偶均衡。"
       },
       {
         "red_balls": [
@@ -24,8 +24,8 @@
         ],
         "blue_balls": [],
         "score": 0,
-        "ai_reason": "冷热均衡和值低",
-        "overall_analysis": "筛选基于和值适中、奇偶比和冷热均衡，优先选择含高遗漏04的组，避免重复结构。"
+        "ai_reason": "冷热均衡和值偏低",
+        "overall_analysis": "基于统计特征筛选，兼顾和值、冷热和奇偶均衡。"
       },
       {
         "red_balls": [
@@ -35,8 +35,8 @@
         ],
         "blue_balls": [],
         "score": 0,
-        "ai_reason": "和值15热号组合",
-        "overall_analysis": "筛选基于和值适中、奇偶比和冷热均衡，优先选择含高遗漏04的组，避免重复结构。"
+        "ai_reason": "和值15奇偶比合理",
+        "overall_analysis": "基于统计特征筛选，兼顾和值、冷热和奇偶均衡。"
       },
       {
         "red_balls": [
@@ -46,8 +46,8 @@
         ],
         "blue_balls": [],
         "score": 0,
-        "ai_reason": "和值17含热号08",
-        "overall_analysis": "筛选基于和值适中、奇偶比和冷热均衡，优先选择含高遗漏04的组，避免重复结构。"
+        "ai_reason": "热号集中和值适中",
+        "overall_analysis": "基于统计特征筛选，兼顾和值、冷热和奇偶均衡。"
       },
       {
         "red_balls": [
@@ -58,7 +58,29 @@
         "blue_balls": [],
         "score": 0,
         "ai_reason": "冷号回补和值14",
-        "overall_analysis": "筛选基于和值适中、奇偶比和冷热均衡，优先选择含高遗漏04的组，避免重复结构。"
+        "overall_analysis": "基于统计特征筛选，兼顾和值、冷热和奇偶均衡。"
+      },
+      {
+        "red_balls": [
+          7,
+          2,
+          7
+        ],
+        "blue_balls": [],
+        "score": 0,
+        "ai_reason": "重复7但和值16",
+        "overall_analysis": "基于统计特征筛选，兼顾和值、冷热和奇偶均衡。"
+      },
+      {
+        "red_balls": [
+          8,
+          0,
+          8
+        ],
+        "blue_balls": [],
+        "score": 0,
+        "ai_reason": "双8和值16风险高",
+        "overall_analysis": "基于统计特征筛选，兼顾和值、冷热和奇偶均衡。"
       },
       {
         "red_balls": [
@@ -68,8 +90,8 @@
         ],
         "blue_balls": [],
         "score": 0,
-        "ai_reason": "和值13含遗漏04",
-        "overall_analysis": "筛选基于和值适中、奇偶比和冷热均衡，优先选择含高遗漏04的组，避免重复结构。"
+        "ai_reason": "和值13冷号04",
+        "overall_analysis": "基于统计特征筛选，兼顾和值、冷热和奇偶均衡。"
       },
       {
         "red_balls": [
@@ -79,8 +101,8 @@
         ],
         "blue_balls": [],
         "score": 0,
-        "ai_reason": "和值14含冷号04",
-        "overall_analysis": "筛选基于和值适中、奇偶比和冷热均衡，优先选择含高遗漏04的组，避免重复结构。"
+        "ai_reason": "和值14含遗漏号",
+        "overall_analysis": "基于统计特征筛选，兼顾和值、冷热和奇偶均衡。"
       },
       {
         "red_balls": [
@@ -90,30 +112,10 @@
         ],
         "blue_balls": [],
         "score": 0,
-        "ai_reason": "和值16热号均衡",
-        "overall_analysis": "筛选基于和值适中、奇偶比和冷热均衡，优先选择含高遗漏04的组，避免重复结构。"
-      },
-      {
-        "red_balls": [
-          7,
-          2,
-          7
-        ],
-        "blue_balls": [],
-        "score": 1.0,
-        "ai_reason": "（补充候选）"
-      },
-      {
-        "red_balls": [
-          8,
-          0,
-          8
-        ],
-        "blue_balls": [],
-        "score": 1.0,
-        "ai_reason": "（补充候选）"
+        "ai_reason": "和值16热号为主",
+        "overall_analysis": "基于统计特征筛选，兼顾和值、冷热和奇偶均衡。"
       }
     ],
-    "created_at": "2026-09-02 12:35:32"
+    "created_at": "2026-09-03 11:42:23"
   }
 ]
