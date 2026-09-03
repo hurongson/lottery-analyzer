@@ -7,25 +7,47 @@
     "candidate_tickets": [
       {
         "red_balls": [
-          7,
-          0,
-          4
+          2,
+          9,
+          3
         ],
         "blue_balls": [],
         "score": 0,
-        "ai_reason": "和值适中含冷号04",
-        "overall_analysis": "基于统计特征筛选，兼顾和值、冷热和奇偶均衡。"
+        "ai_reason": "和值适中冷号回补",
+        "overall_analysis": "综合统计特征，优先选择和值在8-17区间、奇偶比2:1或1:2、包含冷热搭配的号码，避免全热或全冷结构。"
       },
       {
         "red_balls": [
           2,
-          5,
+          8,
+          7
+        ],
+        "blue_balls": [],
+        "score": 0,
+        "ai_reason": "热号集中和值合理",
+        "overall_analysis": "综合统计特征，优先选择和值在8-17区间、奇偶比2:1或1:2、包含冷热搭配的号码，避免全热或全冷结构。"
+      },
+      {
+        "red_balls": [
+          8,
+          4,
           1
         ],
         "blue_balls": [],
         "score": 0,
-        "ai_reason": "冷热均衡和值偏低",
-        "overall_analysis": "基于统计特征筛选，兼顾和值、冷热和奇偶均衡。"
+        "ai_reason": "含高遗漏冷号结构均衡",
+        "overall_analysis": "综合统计特征，优先选择和值在8-17区间、奇偶比2:1或1:2、包含冷热搭配的号码，避免全热或全冷结构。"
+      },
+      {
+        "red_balls": [
+          9,
+          4,
+          1
+        ],
+        "blue_balls": [],
+        "score": 0,
+        "ai_reason": "冷热搭配和值适中",
+        "overall_analysis": "综合统计特征，优先选择和值在8-17区间、奇偶比2:1或1:2、包含冷热搭配的号码，避免全热或全冷结构。"
       },
       {
         "red_balls": [
@@ -35,74 +57,30 @@
         ],
         "blue_balls": [],
         "score": 0,
-        "ai_reason": "和值15奇偶比合理",
-        "overall_analysis": "基于统计特征筛选，兼顾和值、冷热和奇偶均衡。"
+        "ai_reason": "热号组合和值偏上",
+        "overall_analysis": "综合统计特征，优先选择和值在8-17区间、奇偶比2:1或1:2、包含冷热搭配的号码，避免全热或全冷结构。"
       },
       {
         "red_balls": [
           2,
-          8,
-          7
+          5,
+          1
         ],
         "blue_balls": [],
         "score": 0,
-        "ai_reason": "热号集中和值适中",
-        "overall_analysis": "基于统计特征筛选，兼顾和值、冷热和奇偶均衡。"
-      },
-      {
-        "red_balls": [
-          2,
-          9,
-          3
-        ],
-        "blue_balls": [],
-        "score": 0,
-        "ai_reason": "冷号回补和值14",
-        "overall_analysis": "基于统计特征筛选，兼顾和值、冷热和奇偶均衡。"
+        "ai_reason": "冷热均衡和值偏小",
+        "overall_analysis": "综合统计特征，优先选择和值在8-17区间、奇偶比2:1或1:2、包含冷热搭配的号码，避免全热或全冷结构。"
       },
       {
         "red_balls": [
           7,
-          2,
-          7
-        ],
-        "blue_balls": [],
-        "score": 0,
-        "ai_reason": "重复7但和值16",
-        "overall_analysis": "基于统计特征筛选，兼顾和值、冷热和奇偶均衡。"
-      },
-      {
-        "red_balls": [
-          8,
           0,
-          8
+          4
         ],
         "blue_balls": [],
         "score": 0,
-        "ai_reason": "双8和值16风险高",
-        "overall_analysis": "基于统计特征筛选，兼顾和值、冷热和奇偶均衡。"
-      },
-      {
-        "red_balls": [
-          8,
-          4,
-          1
-        ],
-        "blue_balls": [],
-        "score": 0,
-        "ai_reason": "和值13冷号04",
-        "overall_analysis": "基于统计特征筛选，兼顾和值、冷热和奇偶均衡。"
-      },
-      {
-        "red_balls": [
-          9,
-          4,
-          1
-        ],
-        "blue_balls": [],
-        "score": 0,
-        "ai_reason": "和值14含遗漏号",
-        "overall_analysis": "基于统计特征筛选，兼顾和值、冷热和奇偶均衡。"
+        "ai_reason": "热冷结合和值低",
+        "overall_analysis": "综合统计特征，优先选择和值在8-17区间、奇偶比2:1或1:2、包含冷热搭配的号码，避免全热或全冷结构。"
       },
       {
         "red_balls": [
@@ -112,10 +90,32 @@
         ],
         "blue_balls": [],
         "score": 0,
-        "ai_reason": "和值16热号为主",
-        "overall_analysis": "基于统计特征筛选，兼顾和值、冷热和奇偶均衡。"
+        "ai_reason": "热号为主和值较高",
+        "overall_analysis": "综合统计特征，优先选择和值在8-17区间、奇偶比2:1或1:2、包含冷热搭配的号码，避免全热或全冷结构。"
+      },
+      {
+        "red_balls": [
+          7,
+          2,
+          7
+        ],
+        "blue_balls": [],
+        "score": 0,
+        "ai_reason": "重号结构和值适中",
+        "overall_analysis": "综合统计特征，优先选择和值在8-17区间、奇偶比2:1或1:2、包含冷热搭配的号码，避免全热或全冷结构。"
+      },
+      {
+        "red_balls": [
+          8,
+          0,
+          8
+        ],
+        "blue_balls": [],
+        "score": 0,
+        "ai_reason": "双热号组合和值中",
+        "overall_analysis": "综合统计特征，优先选择和值在8-17区间、奇偶比2:1或1:2、包含冷热搭配的号码，避免全热或全冷结构。"
       }
     ],
-    "created_at": "2026-09-03 11:42:23"
+    "created_at": "2026-09-03 12:35:48"
   }
 ]
