@@ -13,8 +13,8 @@
         ],
         "blue_balls": [],
         "score": 0,
-        "ai_reason": "和值适中含冷号04",
-        "overall_analysis": "基于统计特征筛选，兼顾冷热均衡与和值区间，注意重复号风险，仅供参考。"
+        "ai_reason": "和值11适中，含冷号4回补",
+        "overall_analysis": "综合评分和热号分布，选取和值10-20区间，兼顾冷热均衡，避免极端结构。"
       },
       {
         "red_balls": [
@@ -24,8 +24,8 @@
         ],
         "blue_balls": [],
         "score": 0,
-        "ai_reason": "冷热均衡和值偏低",
-        "overall_analysis": "基于统计特征筛选，兼顾冷热均衡与和值区间，注意重复号风险，仅供参考。"
+        "ai_reason": "冷热均衡，和值低但分布合理",
+        "overall_analysis": "综合评分和热号分布，选取和值10-20区间，兼顾冷热均衡，避免极端结构。"
       },
       {
         "red_balls": [
@@ -35,8 +35,8 @@
         ],
         "blue_balls": [],
         "score": 0,
-        "ai_reason": "热号为主和值适中",
-        "overall_analysis": "基于统计特征筛选，兼顾冷热均衡与和值区间，注意重复号风险，仅供参考。"
+        "ai_reason": "热号组合，和值15在最优区间",
+        "overall_analysis": "综合评分和热号分布，选取和值10-20区间，兼顾冷热均衡，避免极端结构。"
       },
       {
         "red_balls": [
@@ -46,8 +46,8 @@
         ],
         "blue_balls": [],
         "score": 0,
-        "ai_reason": "热号组合和值偏大",
-        "overall_analysis": "基于统计特征筛选，兼顾冷热均衡与和值区间，注意重复号风险，仅供参考。"
+        "ai_reason": "热号集中，和值17均势",
+        "overall_analysis": "综合评分和热号分布，选取和值10-20区间，兼顾冷热均衡，避免极端结构。"
       },
       {
         "red_balls": [
@@ -57,19 +57,8 @@
         ],
         "blue_balls": [],
         "score": 0,
-        "ai_reason": "冷号回补和值适中",
-        "overall_analysis": "基于统计特征筛选，兼顾冷热均衡与和值区间，注意重复号风险，仅供参考。"
-      },
-      {
-        "red_balls": [
-          7,
-          2,
-          7
-        ],
-        "blue_balls": [],
-        "score": 0,
-        "ai_reason": "重复号但和值适中",
-        "overall_analysis": "基于统计特征筛选，兼顾冷热均衡与和值区间，注意重复号风险，仅供参考。"
+        "ai_reason": "冷号回补，和值14适中",
+        "overall_analysis": "综合评分和热号分布，选取和值10-20区间，兼顾冷热均衡，避免极端结构。"
       },
       {
         "red_balls": [
@@ -79,8 +68,8 @@
         ],
         "blue_balls": [],
         "score": 0,
-        "ai_reason": "热号重复和值偏高",
-        "overall_analysis": "基于统计特征筛选，兼顾冷热均衡与和值区间，注意重复号风险，仅供参考。"
+        "ai_reason": "高评分热号，和值16",
+        "overall_analysis": "综合评分和热号分布，选取和值10-20区间，兼顾冷热均衡，避免极端结构。"
       },
       {
         "red_balls": [
@@ -90,8 +79,8 @@
         ],
         "blue_balls": [],
         "score": 0,
-        "ai_reason": "热冷搭配和值适中",
-        "overall_analysis": "基于统计特征筛选，兼顾冷热均衡与和值区间，注意重复号风险，仅供参考。"
+        "ai_reason": "热冷搭配，和值13偏低但可",
+        "overall_analysis": "综合评分和热号分布，选取和值10-20区间，兼顾冷热均衡，避免极端结构。"
       },
       {
         "red_balls": [
@@ -101,8 +90,8 @@
         ],
         "blue_balls": [],
         "score": 0,
-        "ai_reason": "冷号回补和值适中",
-        "overall_analysis": "基于统计特征筛选，兼顾冷热均衡与和值区间，注意重复号风险，仅供参考。"
+        "ai_reason": "含冷号4，和值14均衡",
+        "overall_analysis": "综合评分和热号分布，选取和值10-20区间，兼顾冷热均衡，避免极端结构。"
       },
       {
         "red_balls": [
@@ -112,10 +101,21 @@
         ],
         "blue_balls": [],
         "score": 0,
-        "ai_reason": "热号组合和值偏大",
-        "overall_analysis": "基于统计特征筛选，兼顾冷热均衡与和值区间，注意重复号风险，仅供参考。"
+        "ai_reason": "热号为主，和值16适中",
+        "overall_analysis": "综合评分和热号分布，选取和值10-20区间，兼顾冷热均衡，避免极端结构。"
+      },
+      {
+        "red_balls": [
+          7,
+          2,
+          7
+        ],
+        "blue_balls": [],
+        "score": 0,
+        "ai_reason": "重号结构，和值16稳定",
+        "overall_analysis": "综合评分和热号分布，选取和值10-20区间，兼顾冷热均衡，避免极端结构。"
       }
     ],
-    "created_at": "2026-09-05 11:39:56"
+    "created_at": "2026-09-05 12:31:42"
   }
 ]
