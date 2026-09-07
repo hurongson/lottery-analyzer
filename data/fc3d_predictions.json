@@ -13,8 +13,8 @@
         ],
         "blue_balls": [],
         "score": 0,
-        "ai_reason": "和值11含冷号04回补",
-        "overall_analysis": "筛选兼顾热号与冷号回补，和值集中于11-17，奇偶比均衡，避免重复结构。"
+        "ai_reason": "和值适中且含高遗漏04",
+        "overall_analysis": "筛选兼顾和值适中、冷热平衡，避开重复结构，并纳入高遗漏号码。"
       },
       {
         "red_balls": [
@@ -25,7 +25,7 @@
         "blue_balls": [],
         "score": 0,
         "ai_reason": "冷热均衡和值偏低",
-        "overall_analysis": "筛选兼顾热号与冷号回补，和值集中于11-17，奇偶比均衡，避免重复结构。"
+        "overall_analysis": "筛选兼顾和值适中、冷热平衡，避开重复结构，并纳入高遗漏号码。"
       },
       {
         "red_balls": [
@@ -35,8 +35,8 @@
         ],
         "blue_balls": [],
         "score": 0,
-        "ai_reason": "和值15奇偶比2:1",
-        "overall_analysis": "筛选兼顾热号与冷号回补，和值集中于11-17，奇偶比均衡，避免重复结构。"
+        "ai_reason": "和值15接近最优区间",
+        "overall_analysis": "筛选兼顾和值适中、冷热平衡，避开重复结构，并纳入高遗漏号码。"
       },
       {
         "red_balls": [
@@ -46,8 +46,8 @@
         ],
         "blue_balls": [],
         "score": 0,
-        "ai_reason": "和值17热号集中",
-        "overall_analysis": "筛选兼顾热号与冷号回补，和值集中于11-17，奇偶比均衡，避免重复结构。"
+        "ai_reason": "和值17且热号集中",
+        "overall_analysis": "筛选兼顾和值适中、冷热平衡，避开重复结构，并纳入高遗漏号码。"
       },
       {
         "red_balls": [
@@ -57,8 +57,8 @@
         ],
         "blue_balls": [],
         "score": 0,
-        "ai_reason": "冷号回补和值适中",
-        "overall_analysis": "筛选兼顾热号与冷号回补，和值集中于11-17，奇偶比均衡，避免重复结构。"
+        "ai_reason": "冷号回补和值14",
+        "overall_analysis": "筛选兼顾和值适中、冷热平衡，避开重复结构，并纳入高遗漏号码。"
       },
       {
         "red_balls": [
@@ -69,7 +69,7 @@
         "blue_balls": [],
         "score": 0,
         "ai_reason": "和值13含高遗漏04",
-        "overall_analysis": "筛选兼顾热号与冷号回补，和值集中于11-17，奇偶比均衡，避免重复结构。"
+        "overall_analysis": "筛选兼顾和值适中、冷热平衡，避开重复结构，并纳入高遗漏号码。"
       },
       {
         "red_balls": [
@@ -79,8 +79,8 @@
         ],
         "blue_balls": [],
         "score": 0,
-        "ai_reason": "和值14结构均衡",
-        "overall_analysis": "筛选兼顾热号与冷号回补，和值集中于11-17，奇偶比均衡，避免重复结构。"
+        "ai_reason": "和值14冷热搭配",
+        "overall_analysis": "筛选兼顾和值适中、冷热平衡，避开重复结构，并纳入高遗漏号码。"
       },
       {
         "red_balls": [
@@ -90,8 +90,8 @@
         ],
         "blue_balls": [],
         "score": 0,
-        "ai_reason": "和值16奇偶比2:1",
-        "overall_analysis": "筛选兼顾热号与冷号回补，和值集中于11-17，奇偶比均衡，避免重复结构。"
+        "ai_reason": "和值16热号为主",
+        "overall_analysis": "筛选兼顾和值适中、冷热平衡，避开重复结构，并纳入高遗漏号码。"
       },
       {
         "red_balls": [
@@ -114,6 +114,6 @@
         "ai_reason": "（补充候选）"
       }
     ],
-    "created_at": "2026-09-07 11:44:08"
+    "created_at": "2026-09-07 12:36:32"
   }
 ]
