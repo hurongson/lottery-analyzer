@@ -7,17 +7,6 @@
     "candidate_tickets": [
       {
         "red_balls": [
-          7,
-          0,
-          4
-        ],
-        "blue_balls": [],
-        "score": 0,
-        "ai_reason": "和值适中且含高遗漏04",
-        "overall_analysis": "筛选兼顾和值适中、冷热平衡，避开重复结构，并纳入高遗漏号码。"
-      },
-      {
-        "red_balls": [
           2,
           5,
           1
@@ -25,29 +14,7 @@
         "blue_balls": [],
         "score": 0,
         "ai_reason": "冷热均衡和值偏低",
-        "overall_analysis": "筛选兼顾和值适中、冷热平衡，避开重复结构，并纳入高遗漏号码。"
-      },
-      {
-        "red_balls": [
-          9,
-          0,
-          6
-        ],
-        "blue_balls": [],
-        "score": 0,
-        "ai_reason": "和值15接近最优区间",
-        "overall_analysis": "筛选兼顾和值适中、冷热平衡，避开重复结构，并纳入高遗漏号码。"
-      },
-      {
-        "red_balls": [
-          2,
-          8,
-          7
-        ],
-        "blue_balls": [],
-        "score": 0,
-        "ai_reason": "和值17且热号集中",
-        "overall_analysis": "筛选兼顾和值适中、冷热平衡，避开重复结构，并纳入高遗漏号码。"
+        "overall_analysis": "基于统计特征选取，优先和值适中、冷热均衡，避免极端结构。"
       },
       {
         "red_balls": [
@@ -57,8 +24,30 @@
         ],
         "blue_balls": [],
         "score": 0,
-        "ai_reason": "冷号回补和值14",
-        "overall_analysis": "筛选兼顾和值适中、冷热平衡，避开重复结构，并纳入高遗漏号码。"
+        "ai_reason": "冷号回补和值适中",
+        "overall_analysis": "基于统计特征选取，优先和值适中、冷热均衡，避免极端结构。"
+      },
+      {
+        "red_balls": [
+          2,
+          8,
+          7
+        ],
+        "blue_balls": [],
+        "score": 0,
+        "ai_reason": "热号为主和值合理",
+        "overall_analysis": "基于统计特征选取，优先和值适中、冷热均衡，避免极端结构。"
+      },
+      {
+        "red_balls": [
+          9,
+          0,
+          6
+        ],
+        "blue_balls": [],
+        "score": 0,
+        "ai_reason": "热号组合和值偏大",
+        "overall_analysis": "基于统计特征选取，优先和值适中、冷热均衡，避免极端结构。"
       },
       {
         "red_balls": [
@@ -68,8 +57,8 @@
         ],
         "blue_balls": [],
         "score": 0,
-        "ai_reason": "和值13含高遗漏04",
-        "overall_analysis": "筛选兼顾和值适中、冷热平衡，避开重复结构，并纳入高遗漏号码。"
+        "ai_reason": "热冷结合和值较好",
+        "overall_analysis": "基于统计特征选取，优先和值适中、冷热均衡，避免极端结构。"
       },
       {
         "red_balls": [
@@ -79,8 +68,19 @@
         ],
         "blue_balls": [],
         "score": 0,
-        "ai_reason": "和值14冷热搭配",
-        "overall_analysis": "筛选兼顾和值适中、冷热平衡，避开重复结构，并纳入高遗漏号码。"
+        "ai_reason": "冷热搭配和值适中",
+        "overall_analysis": "基于统计特征选取，优先和值适中、冷热均衡，避免极端结构。"
+      },
+      {
+        "red_balls": [
+          7,
+          0,
+          4
+        ],
+        "blue_balls": [],
+        "score": 0,
+        "ai_reason": "热号为主和值偏小",
+        "overall_analysis": "基于统计特征选取，优先和值适中、冷热均衡，避免极端结构。"
       },
       {
         "red_balls": [
@@ -90,18 +90,8 @@
         ],
         "blue_balls": [],
         "score": 0,
-        "ai_reason": "和值16热号为主",
-        "overall_analysis": "筛选兼顾和值适中、冷热平衡，避开重复结构，并纳入高遗漏号码。"
-      },
-      {
-        "red_balls": [
-          7,
-          2,
-          7
-        ],
-        "blue_balls": [],
-        "score": 1.0,
-        "ai_reason": "（补充候选）"
+        "ai_reason": "热号均衡和值合理",
+        "overall_analysis": "基于统计特征选取，优先和值适中、冷热均衡，避免极端结构。"
       },
       {
         "red_balls": [
@@ -110,10 +100,22 @@
           8
         ],
         "blue_balls": [],
-        "score": 1.0,
-        "ai_reason": "（补充候选）"
+        "score": 0,
+        "ai_reason": "热号集中和值中等",
+        "overall_analysis": "基于统计特征选取，优先和值适中、冷热均衡，避免极端结构。"
+      },
+      {
+        "red_balls": [
+          7,
+          2,
+          7
+        ],
+        "blue_balls": [],
+        "score": 0,
+        "ai_reason": "热号为主和值略高",
+        "overall_analysis": "基于统计特征选取，优先和值适中、冷热均衡，避免极端结构。"
       }
     ],
-    "created_at": "2026-09-07 12:36:32"
+    "created_at": "2026-09-08 12:36:48"
   }
 ]
