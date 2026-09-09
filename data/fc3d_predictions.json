@@ -13,8 +13,8 @@
         ],
         "blue_balls": [],
         "score": 0,
-        "ai_reason": "和值11适中含冷号04",
-        "overall_analysis": "筛选兼顾和值适中、冷热平衡，避免重复结构，优先评分高且遗漏合理的组合。"
+        "ai_reason": "和值适中含冷号04",
+        "overall_analysis": "筛选兼顾和值区间、冷热均衡及结构合理性，避免极端组合。"
       },
       {
         "red_balls": [
@@ -25,7 +25,7 @@
         "blue_balls": [],
         "score": 0,
         "ai_reason": "冷热均衡和值偏低",
-        "overall_analysis": "筛选兼顾和值适中、冷热平衡，避免重复结构，优先评分高且遗漏合理的组合。"
+        "overall_analysis": "筛选兼顾和值区间、冷热均衡及结构合理性，避免极端组合。"
       },
       {
         "red_balls": [
@@ -36,7 +36,7 @@
         "blue_balls": [],
         "score": 0,
         "ai_reason": "和值15热号组合",
-        "overall_analysis": "筛选兼顾和值适中、冷热平衡，避免重复结构，优先评分高且遗漏合理的组合。"
+        "overall_analysis": "筛选兼顾和值区间、冷热均衡及结构合理性，避免极端组合。"
       },
       {
         "red_balls": [
@@ -46,8 +46,8 @@
         ],
         "blue_balls": [],
         "score": 0,
-        "ai_reason": "和值17接近最优",
-        "overall_analysis": "筛选兼顾和值适中、冷热平衡，避免重复结构，优先评分高且遗漏合理的组合。"
+        "ai_reason": "和值17结构均衡",
+        "overall_analysis": "筛选兼顾和值区间、冷热均衡及结构合理性，避免极端组合。"
       },
       {
         "red_balls": [
@@ -57,8 +57,8 @@
         ],
         "blue_balls": [],
         "score": 0,
-        "ai_reason": "冷号回补和值14",
-        "overall_analysis": "筛选兼顾和值适中、冷热平衡，避免重复结构，优先评分高且遗漏合理的组合。"
+        "ai_reason": "冷号回补和值好",
+        "overall_analysis": "筛选兼顾和值区间、冷热均衡及结构合理性，避免极端组合。"
       },
       {
         "red_balls": [
@@ -68,8 +68,8 @@
         ],
         "blue_balls": [],
         "score": 0,
-        "ai_reason": "和值13含高遗漏",
-        "overall_analysis": "筛选兼顾和值适中、冷热平衡，避免重复结构，优先评分高且遗漏合理的组合。"
+        "ai_reason": "和值13含冷号04",
+        "overall_analysis": "筛选兼顾和值区间、冷热均衡及结构合理性，避免极端组合。"
       },
       {
         "red_balls": [
@@ -79,8 +79,8 @@
         ],
         "blue_balls": [],
         "score": 0,
-        "ai_reason": "和值14冷热结合",
-        "overall_analysis": "筛选兼顾和值适中、冷热平衡，避免重复结构，优先评分高且遗漏合理的组合。"
+        "ai_reason": "和值14冷热搭配",
+        "overall_analysis": "筛选兼顾和值区间、冷热均衡及结构合理性，避免极端组合。"
       },
       {
         "red_balls": [
@@ -90,8 +90,8 @@
         ],
         "blue_balls": [],
         "score": 0,
-        "ai_reason": "和值16热号集中",
-        "overall_analysis": "筛选兼顾和值适中、冷热平衡，避免重复结构，优先评分高且遗漏合理的组合。"
+        "ai_reason": "和值16热号为主",
+        "overall_analysis": "筛选兼顾和值区间、冷热均衡及结构合理性，避免极端组合。"
       },
       {
         "red_balls": [
@@ -100,8 +100,9 @@
           7
         ],
         "blue_balls": [],
-        "score": 1.0,
-        "ai_reason": "（补充候选）"
+        "score": 0,
+        "ai_reason": "和值16但重号需谨慎",
+        "overall_analysis": "筛选兼顾和值区间、冷热均衡及结构合理性，避免极端组合。"
       },
       {
         "red_balls": [
@@ -110,10 +111,11 @@
           8
         ],
         "blue_balls": [],
-        "score": 1.0,
-        "ai_reason": "（补充候选）"
+        "score": 0,
+        "ai_reason": "和值16重号风险高",
+        "overall_analysis": "筛选兼顾和值区间、冷热均衡及结构合理性，避免极端组合。"
       }
     ],
-    "created_at": "2026-09-09 11:44:15"
+    "created_at": "2026-09-09 12:36:36"
   }
 ]
