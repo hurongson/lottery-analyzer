@@ -7,58 +7,6 @@
     "candidate_tickets": [
       {
         "red_balls": [
-          8,
-          5,
-          3,
-          1,
-          9
-        ],
-        "blue_balls": [],
-        "score": 0,
-        "ai_reason": "和值26适中奇偶比合理",
-        "overall_analysis": "筛选基于和值适中、奇偶比合理及冷热均衡，兼顾热号与冷号，避免极端结构。"
-      },
-      {
-        "red_balls": [
-          3,
-          2,
-          2,
-          9,
-          5
-        ],
-        "blue_balls": [],
-        "score": 0,
-        "ai_reason": "和值21接近最优区间",
-        "overall_analysis": "筛选基于和值适中、奇偶比合理及冷热均衡，兼顾热号与冷号，避免极端结构。"
-      },
-      {
-        "red_balls": [
-          2,
-          9,
-          8,
-          2,
-          5
-        ],
-        "blue_balls": [],
-        "score": 0,
-        "ai_reason": "和值26分布较均匀",
-        "overall_analysis": "筛选基于和值适中、奇偶比合理及冷热均衡，兼顾热号与冷号，避免极端结构。"
-      },
-      {
-        "red_balls": [
-          7,
-          4,
-          5,
-          4,
-          9
-        ],
-        "blue_balls": [],
-        "score": 0,
-        "ai_reason": "和值29冷号回补",
-        "overall_analysis": "筛选基于和值适中、奇偶比合理及冷热均衡，兼顾热号与冷号，避免极端结构。"
-      },
-      {
-        "red_balls": [
           5,
           8,
           1,
@@ -67,47 +15,8 @@
         ],
         "blue_balls": [],
         "score": 0,
-        "ai_reason": "和值17热号为主",
-        "overall_analysis": "筛选基于和值适中、奇偶比合理及冷热均衡，兼顾热号与冷号，避免极端结构。"
-      },
-      {
-        "red_balls": [
-          4,
-          2,
-          4,
-          8,
-          0
-        ],
-        "blue_balls": [],
-        "score": 0,
-        "ai_reason": "和值18含热号",
-        "overall_analysis": "筛选基于和值适中、奇偶比合理及冷热均衡，兼顾热号与冷号，避免极端结构。"
-      },
-      {
-        "red_balls": [
-          4,
-          8,
-          4,
-          8,
-          4
-        ],
-        "blue_balls": [],
-        "score": 0,
-        "ai_reason": "和值28奇偶比合理",
-        "overall_analysis": "筛选基于和值适中、奇偶比合理及冷热均衡，兼顾热号与冷号，避免极端结构。"
-      },
-      {
-        "red_balls": [
-          3,
-          1,
-          1,
-          8,
-          4
-        ],
-        "blue_balls": [],
-        "score": 0,
-        "ai_reason": "和值17热号均衡",
-        "overall_analysis": "筛选基于和值适中、奇偶比合理及冷热均衡，兼顾热号与冷号，避免极端结构。"
+        "ai_reason": "热号为主和值适中",
+        "overall_analysis": "基于统计特征筛选，优先选择评分高、和值在最优区间、奇偶比合理的号码，兼顾冷热平衡。"
       },
       {
         "red_balls": [
@@ -119,8 +28,99 @@
         ],
         "blue_balls": [],
         "score": 0,
-        "ai_reason": "和值17冷热均衡",
-        "overall_analysis": "筛选基于和值适中、奇偶比合理及冷热均衡，兼顾热号与冷号，避免极端结构。"
+        "ai_reason": "冷热均衡和值适中",
+        "overall_analysis": "基于统计特征筛选，优先选择评分高、和值在最优区间、奇偶比合理的号码，兼顾冷热平衡。"
+      },
+      {
+        "red_balls": [
+          7,
+          4,
+          5,
+          4,
+          9
+        ],
+        "blue_balls": [],
+        "score": 0,
+        "ai_reason": "冷号回补和值适中",
+        "overall_analysis": "基于统计特征筛选，优先选择评分高、和值在最优区间、奇偶比合理的号码，兼顾冷热平衡。"
+      },
+      {
+        "red_balls": [
+          4,
+          2,
+          4,
+          8,
+          0
+        ],
+        "blue_balls": [],
+        "score": 0,
+        "ai_reason": "热号为主和值适中",
+        "overall_analysis": "基于统计特征筛选，优先选择评分高、和值在最优区间、奇偶比合理的号码，兼顾冷热平衡。"
+      },
+      {
+        "red_balls": [
+          8,
+          5,
+          3,
+          1,
+          9
+        ],
+        "blue_balls": [],
+        "score": 0,
+        "ai_reason": "热号为主奇偶均衡",
+        "overall_analysis": "基于统计特征筛选，优先选择评分高、和值在最优区间、奇偶比合理的号码，兼顾冷热平衡。"
+      },
+      {
+        "red_balls": [
+          3,
+          1,
+          1,
+          8,
+          4
+        ],
+        "blue_balls": [],
+        "score": 0,
+        "ai_reason": "热号为主和值适中",
+        "overall_analysis": "基于统计特征筛选，优先选择评分高、和值在最优区间、奇偶比合理的号码，兼顾冷热平衡。"
+      },
+      {
+        "red_balls": [
+          4,
+          8,
+          4,
+          8,
+          4
+        ],
+        "blue_balls": [],
+        "score": 0,
+        "ai_reason": "热号为主和值适中",
+        "overall_analysis": "基于统计特征筛选，优先选择评分高、和值在最优区间、奇偶比合理的号码，兼顾冷热平衡。"
+      },
+      {
+        "red_balls": [
+          3,
+          2,
+          2,
+          9,
+          5
+        ],
+        "blue_balls": [],
+        "score": 0,
+        "ai_reason": "热号为主和值适中",
+        "overall_analysis": "基于统计特征筛选，优先选择评分高、和值在最优区间、奇偶比合理的号码，兼顾冷热平衡。"
+      },
+      {
+        "red_balls": [
+          2,
+          9,
+          8,
+          2,
+          5
+        ],
+        "blue_balls": [],
+        "score": 0,
+        "ai_reason": "热号为主和值适中",
+        "overall_analysis": "基于统计特征筛选，优先选择评分高、和值在最优区间、奇偶比合理的号码，兼顾冷热平衡。"
       },
       {
         "red_balls": [
@@ -132,10 +132,10 @@
         ],
         "blue_balls": [],
         "score": 0,
-        "ai_reason": "和值20冷热均衡",
-        "overall_analysis": "筛选基于和值适中、奇偶比合理及冷热均衡，兼顾热号与冷号，避免极端结构。"
+        "ai_reason": "冷热均衡和值适中",
+        "overall_analysis": "基于统计特征筛选，优先选择评分高、和值在最优区间、奇偶比合理的号码，兼顾冷热平衡。"
       }
     ],
-    "created_at": "2026-09-09 11:44:34"
+    "created_at": "2026-09-10 11:44:09"
   }
 ]
